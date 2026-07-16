@@ -1,0 +1,51 @@
+site_name: 算法工程师的 Infra 入门
+site_description: 一本边学边记、力求正确的 infra 入门书
+theme:
+  name: material
+  language: zh
+  palette:
+    # 亮色 / 暗色切换
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: 切换到暗色
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到亮色
+  features:
+    - navigation.sections   # 侧边栏按分组展开
+    - navigation.top        # 回到顶部
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy     # 代码块一键复制
+
+# 书内容放在 docs/（MkDocs 默认文档目录）。GitHub 上照样能浏览 docs/ 里的 .md，
+# 二者共用同一批文件，零内容重复。exercises/ 里的可运行代码留在仓库根，通过
+# scripts/sync_code.py 内联进章节，所以任何 Markdown 阅读器都能直接看到代码。
+
+# 只用 GitHub / 阅读器 / MkDocs 三边通用的可移植 Markdown 扩展。
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - footnotes
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+
+plugins:
+  - search:
+      lang: zh
+
+nav:
+  - 首页: index.md
+  - 术语表: glossary.md
+  - 第一部分 · 推理与服务:
+      - 第 1 章 · Prefill 与 Decode: chapters/01-inference/01-prefill-decode.md
+      - 补充 A · GPU 存储层级与 HBM: chapters/01-inference/A1-gpu-storage-hbm.md
+      - 补充 B · CUDA 异步/同步与基准测试: chapters/01-inference/A2-cuda-async-sync-benchmark.md

@@ -1,0 +1,13 @@
+# MkDocs 构建产物
+site/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 编辑器
+.DS_Store
+.idea/
+.vscode/
