@@ -11,28 +11,24 @@
 
 ## 全书大纲
 
-### 第一部分 · 推理与服务（进行中）
+完整课程见[**学习路线图**](roadmap.md)。总目标：从算法工程师视角吃透推理与训练 infra，
+最终能**优化框架提速**、**优化算子 (kernel)**。分五部分：
 
-| 章 | 主题 | 状态 |
-|----|------|------|
-| 1 | [推理的两个阶段：Prefill 与 Decode](chapters/01-inference/01-prefill-decode.md) | ✅ 已完成 |
-| — | [补充 A：GPU 存储层级与 HBM](chapters/01-inference/A1-gpu-storage-hbm.md) | ✅ |
-| — | [补充 B：CUDA 异步/同步与基准测试](chapters/01-inference/A2-cuda-async-sync-benchmark.md) | ✅ |
-| 2 | KV Cache：原理与显存计算 | 待学 |
-| 3 | Batching：从 static 到 continuous batching | 待学 |
-| 4 | PagedAttention 与显存管理 | 待学 |
-| 5 | 前缀复用（Prefix Caching / RadixAttention） | 待学 |
-| 6 | 量化：省显存与提速 | 待学 |
-| 7 | 投机解码（Speculative Decoding） | 待学 |
-| 8 | 关键指标：TTFT / TPOT / 吞吐 / Goodput | 待学 |
-| 9 | 引擎实战：vLLM / SGLang | 待学 |
+| 部分 | 主题 | 你会获得 |
+|------|------|----------|
+| 一 | 推理与服务 | 看懂并配置高性能推理服务（🔜 进行中） |
+| 二 | GPU 架构与算子优化 ★ | 会读/写/优化一个算子，用 profiler 定位瓶颈 |
+| 三 | 框架与编译优化 ★ | 用 torch.compile / CUDA Graph 调优真实模型 |
+| 四 | 分布式训练 | 理解并行策略与通信瓶颈 |
+| 五 | 综合实战 | 端到端"定位瓶颈 → 落地提速" |
 
-### 第二部分 · 分布式训练（待开始）
+★ = 你的两个核心目标（算子优化、框架提速）。
 
-- 数据并行 / 张量并行 / 流水线并行
-- ZeRO 与 FSDP
-- NCCL 与集合通信
-- 3D 并行与实战
+**第一部分当前进度**：
+
+- ✅ 第 1 章 [推理的两个阶段：Prefill 与 Decode](chapters/01-inference/01-prefill-decode.md)
+  （含[补充 A · HBM](chapters/01-inference/A1-gpu-storage-hbm.md)、[补充 B · CUDA 同步](chapters/01-inference/A2-cuda-async-sync-benchmark.md)）
+- 🔜 第 2 章 KV Cache：原理与显存计算
 
 ## 学习环境
 
