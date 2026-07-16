@@ -16,7 +16,7 @@ theme:
         icon: material/weather-sunny
         name: 切换到亮色
   features:
-    - navigation.sections   # 侧边栏按分组展开
+    - navigation.indexes    # 允许"章"节点本身是一个页面，补充内容缩进其下
     - navigation.top        # 回到顶部
     - toc.follow
     - search.suggest
@@ -46,6 +46,7 @@ nav:
   - 首页: index.md
   - 术语表: glossary.md
   - 第一部分 · 推理与服务:
-      - 第 1 章 · Prefill 与 Decode: chapters/01-inference/01-prefill-decode.md
-      - 补充 A · GPU 存储层级与 HBM: chapters/01-inference/A1-gpu-storage-hbm.md
-      - 补充 B · CUDA 异步/同步与基准测试: chapters/01-inference/A2-cuda-async-sync-benchmark.md
+      - 第 1 章 · Prefill 与 Decode:
+          - chapters/01-inference/01-prefill-decode.md
+          - 补充 A · GPU 存储层级与 HBM: chapters/01-inference/A1-gpu-storage-hbm.md
+          - 补充 B · CUDA 异步/同步与基准测试: chapters/01-inference/A2-cuda-async-sync-benchmark.md

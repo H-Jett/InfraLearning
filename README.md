@@ -18,8 +18,7 @@ infra-learning/
     chapters/01-inference/ # 第一部分 · 推理
   exercises/               # 可运行的练习代码（.py 是代码唯一真源）
   scripts/sync_code.py     # 把 .py 内联进章节附录（保证阅读器里也能看到代码）
-  logs/                    # 学习进度日志
-  qa/                      # 问答 / 纠错记录
+  qa/                      # 思考题参考答案（答案册）
   mkdocs.yml               # 网站构建配置
   .github/workflows/       # GitHub Pages 自动发布
 ```

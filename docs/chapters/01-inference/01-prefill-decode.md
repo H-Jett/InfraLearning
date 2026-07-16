@@ -155,13 +155,23 @@
 - **Compute-bound / Memory-bound**：瓶颈在算力 / 在显存带宽。
 - **KV Cache**：缓存历史 token 的 Key/Value，避免重算（第 2 章详解）。
 
-## 1.6 延伸阅读（本章补充）
+## 1.6 思考题
+
+1. 解码阶段，8 个请求一起 decode，总耗时更接近 `1×TPOT` 还是 `8×TPOT`？为什么？
+   这对提升吞吐有什么启示？
+2. 实验 A 中，16 个 token 的 prefill 反而比 256 个慢。这不是 bug，为什么？
+   （提示：这个区间的瓶颈不在"算"。）
+3. （进阶）为什么 decode 阶段是访存受限 (memory-bound) 的？试着用"算术强度"来解释。
+
+> 参考答案见仓库 `qa/01-prefill-decode-qa.md`。
+
+## 1.7 延伸阅读（本章补充）
 
 - [补充 A：GPU 的存储层级与 HBM](A1-gpu-storage-hbm.md) —— "从显存搬权重"的硬件背景。
 - [补充 B：CUDA 的异步执行、同步与正确的基准测试](A2-cuda-async-sync-benchmark.md) ——
   为什么练习脚本里到处是 `synchronize()`。
 
-## 1.7 附录：本章练习代码
+## 1.8 附录：本章练习代码
 
 下面是练习脚本的完整内容（由 `scripts/sync_code.py` 从源码自动同步，勿手改）。
 源码文件：`exercises/01-inference/prefill_vs_decode.py`。
