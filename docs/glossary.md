@@ -106,6 +106,20 @@ NVIDIA 的多卡集合通信库，提供 AllReduce、AllGather 等原语，是�
 缓存历史 token 在注意力中算出的 Key/Value，使解码每步只需计算新 token，无需重算整段历史。
 是解码提速的关键，也是长上下文/高并发时的主要显存消耗者。
 
+<a id="mha"></a>
+### MHA（Multi-Head Attention，多头注意力）
+标准注意力：每个 Query 头都有自己独立的 Key/Value 头。KV cache 最大。
+
+<a id="gqa"></a>
+### GQA（Grouped-Query Attention，分组查询注意力）
+多个 Query 头**共享**一组 Key/Value 头（KV 头数 < Q 头数）。在几乎不损质量的前提下把
+KV cache 按比例砍小，是现代大模型的主流选择。
+
+<a id="mqa"></a>
+### MQA（Multi-Query Attention，多查询注意力）
+GQA 的极端情形：**所有** Query 头共享同一组 Key/Value（KV 头数 = 1）。KV cache 最小，
+但对质量影响比 GQA 大。
+
 <a id="warmup"></a>
 ### Warmup（预热）
 正式计时前先空跑几次，让 GPU 完成显存分配、kernel 编译/缓存等一次性冷启动开销，使测量稳定。

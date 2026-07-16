@@ -29,7 +29,8 @@
 
 - ✅ 第 1 章 [推理的两个阶段：Prefill 与 Decode](chapters/01-inference/01-prefill-decode.md)
   （含[补充 A · HBM](chapters/01-inference/A1-gpu-storage-hbm.md)、[补充 B · CUDA 同步](chapters/01-inference/A2-cuda-async-sync-benchmark.md)）
-- 🔜 第 2 章 KV Cache：原理与显存计算
+- ✅ 第 2 章 [KV Cache：原理与显存计算](chapters/01-inference/02-kv-cache.md)
+- 🔜 第 3 章 Batching：static → continuous batching
 
 ## 学习环境
 

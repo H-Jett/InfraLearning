@@ -17,8 +17,8 @@
 | 1 | Prefill 与 Decode | 推理两阶段的不对称，memory-bound 的本质 | ✅ |
 | — | 补充 A：GPU 存储层级与 HBM | "从显存搬权重"的硬件背景 | ✅ |
 | — | 补充 B：CUDA 异步/同步与基准测试 | 怎么在 GPU 上准确计时 | ✅ |
-| 2 | KV Cache：原理与显存计算 | 缓存了什么、显存怎么一字节字节算 | 🔜 |
-| 3 | Batching：static → continuous batching | 吞吐第一杠杆，GPU 怎么喂饱 | ⬜ |
+| 2 | KV Cache：原理与显存计算 | 缓存了什么、显存怎么一字节字节算 | ✅ |
+| 3 | Batching：static → continuous batching | 吞吐第一杠杆，GPU 怎么喂饱 | 🔜 |
 | 4 | PagedAttention 与显存管理 | 像操作系统分页一样管 KV cache | ⬜ |
 | 5 | 前缀复用 (Prefix Caching / RadixAttention) | 共享前缀怎么省算力和显存 | ⬜ |
 | 6 | 量化 (INT8/INT4/FP8, GPTQ/AWQ, KV 量化) | 减少要搬的字节 → 提速省显存 | ⬜ |

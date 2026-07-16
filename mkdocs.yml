@@ -51,3 +51,4 @@ nav:
           - chapters/01-inference/01-prefill-decode.md
           - 补充 A · GPU 存储层级与 HBM: chapters/01-inference/A1-gpu-storage-hbm.md
           - 补充 B · CUDA 异步/同步与基准测试: chapters/01-inference/A2-cuda-async-sync-benchmark.md
+      - 第 2 章 · KV Cache: chapters/01-inference/02-kv-cache.md
