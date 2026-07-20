@@ -13,7 +13,7 @@
   C) 对比 GQA vs 若为 MHA 的差异，以及 KV cache 与模型权重的"交叉点"。
 
 绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/kv_cache_memory.py
+  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/02_kv_cache_memory.py
 """
 
 import torch

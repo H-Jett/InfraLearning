@@ -13,7 +13,7 @@
     短序列早早结束却要陪跑到最长的那条，GPU 空转；continuous batching 能把这部分收回来。
 
 绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/batching_throughput.py
+  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/03_batching_throughput.py
 """
 
 import time

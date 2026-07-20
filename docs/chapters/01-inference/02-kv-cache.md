@@ -132,9 +132,9 @@ Qwen3-0.6B 的关键配置：
 
 ## 2.10 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/kv_cache_memory.py`。
+由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/02_kv_cache_memory.py`。
 
-<!-- CODE:exercises/01-inference/kv_cache_memory.py START -->
+<!-- CODE:exercises/01-inference/02_kv_cache_memory.py START -->
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -151,7 +151,7 @@ Qwen3-0.6B 的关键配置：
   C) 对比 GQA vs 若为 MHA 的差异，以及 KV cache 与模型权重的"交叉点"。
 
 绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/kv_cache_memory.py
+  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/02_kv_cache_memory.py
 """
 
 import torch
@@ -254,7 +254,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-<!-- CODE:exercises/01-inference/kv_cache_memory.py END -->
+<!-- CODE:exercises/01-inference/02_kv_cache_memory.py END -->
 
 ---
 

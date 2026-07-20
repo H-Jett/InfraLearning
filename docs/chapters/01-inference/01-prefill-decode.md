@@ -174,9 +174,9 @@
 ## 1.8 附录：本章练习代码
 
 下面是练习脚本的完整内容（由 `scripts/sync_code.py` 从源码自动同步，勿手改）。
-源码文件：`exercises/01-inference/prefill_vs_decode.py`。
+源码文件：`exercises/01-inference/01_prefill_vs_decode.py`。
 
-<!-- CODE:exercises/01-inference/prefill_vs_decode.py START -->
+<!-- CODE:exercises/01-inference/01_prefill_vs_decode.py START -->
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -193,7 +193,7 @@
      prefill 几千个 token 还慢 —— 因为 decode 是访存受限的（第 1 章正文详解）。
 
 绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/prefill_vs_decode.py
+  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/01_prefill_vs_decode.py
 """
 
 import time
@@ -317,4 +317,4 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-<!-- CODE:exercises/01-inference/prefill_vs_decode.py END -->
+<!-- CODE:exercises/01-inference/01_prefill_vs_decode.py END -->

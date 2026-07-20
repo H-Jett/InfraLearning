@@ -131,9 +131,9 @@ continuous batching 让序列**不断进进出出、每条长度还都不一样*
 
 ## 3.9 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/batching_throughput.py`。
+由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/03_batching_throughput.py`。
 
-<!-- CODE:exercises/01-inference/batching_throughput.py START -->
+<!-- CODE:exercises/01-inference/03_batching_throughput.py START -->
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -150,7 +150,7 @@ continuous batching 让序列**不断进进出出、每条长度还都不一样*
     短序列早早结束却要陪跑到最长的那条，GPU 空转；continuous batching 能把这部分收回来。
 
 绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/batching_throughput.py
+  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/03_batching_throughput.py
 """
 
 import time
@@ -238,7 +238,7 @@ def main():
 if __name__ == "__main__":
     main()
 ```
-<!-- CODE:exercises/01-inference/batching_throughput.py END -->
+<!-- CODE:exercises/01-inference/03_batching_throughput.py END -->
 
 ---
 

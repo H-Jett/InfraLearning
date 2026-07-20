@@ -48,7 +48,7 @@ t1 = time.perf_counter()       # 这里测到的几乎只是"发射耗时"，几
    GPU 里没有上一段残留的任务在跑，否则它们会赖到本次的账上。
 3. **后置 `synchronize()`**：在 `t1` **之前**同步一次，强制 CPU 等本次任务真正算完再掐表。
 
-对应到练习脚本 `prefill_vs_decode.py` 里的 `timeit()`：先 warmup，再对每次测量
+对应到练习脚本 `01_prefill_vs_decode.py` 里的 `timeit()`：先 warmup，再对每次测量
 "前 `sync()` → 计时开始 → 跑 → 后 `sync()` → 计时结束"，最后取多次的中位数以抗抖动。
 
 ## B.5 更精细的并发：CUDA 流 (Streams)

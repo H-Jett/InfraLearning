@@ -13,7 +13,7 @@
      prefill 几千个 token 还慢 —— 因为 decode 是访存受限的（第 1 章正文详解）。
 
 绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/prefill_vs_decode.py
+  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/01_prefill_vs_decode.py
 """
 
 import time

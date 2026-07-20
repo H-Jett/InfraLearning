@@ -53,3 +53,4 @@ nav:
           - 补充 B · CUDA 异步/同步与基准测试: chapters/01-inference/A2-cuda-async-sync-benchmark.md
       - 第 2 章 · KV Cache: chapters/01-inference/02-kv-cache.md
       - 第 3 章 · Batching: chapters/01-inference/03-batching.md
+      - 第 4 章 · PagedAttention: chapters/01-inference/04-paged-attention.md

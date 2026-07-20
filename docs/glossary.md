@@ -134,3 +134,21 @@ GQA 的极端情形：**所有** Query 头共享同一组 Key/Value（KV 头数 
 又称 in-flight batching / iteration-level scheduling。把调度粒度降到每个 decode 步：完成的序列
 立即退出并释放 KV cache，等待的新请求立即补进空位。GPU 始终满载，是现代推理引擎（vLLM/SGLang/TGI）
 高吞吐的核心。
+
+<a id="paged-attention"></a>
+### PagedAttention
+vLLM 提出的 KV cache 管理技术：借用操作系统内存分页的思路，把 KV cache 切成固定大小的 block，
+按需分配、物理上可不连续，消除碎片，让有限显存装下更多并发序列。
+
+<a id="kv-block"></a>
+### Block（KV 块）
+PagedAttention 里 KV cache 分页的固定大小单位，存若干个 token 的 K/V（vLLM 默认 16 个）。
+
+<a id="block-table"></a>
+### Block Table（块表）
+记录一条序列的"逻辑块 → 物理块"映射的表，相当于操作系统的页表，让分散的物理块拼成连续的逻辑 KV。
+
+<a id="fragmentation"></a>
+### Fragmentation（碎片）
+显存的两类浪费：**内部碎片**（分配了但没用满，如预留最大长度）、**外部碎片**（释放后留下放不下
+新请求的小空洞）。PagedAttention 用定长块 + 按需分配基本消除两者。
