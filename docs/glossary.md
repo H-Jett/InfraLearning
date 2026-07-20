@@ -123,3 +123,14 @@ GQA 的极端情形：**所有** Query 头共享同一组 Key/Value（KV 头数 
 <a id="warmup"></a>
 ### Warmup（预热）
 正式计时前先空跑几次，让 GPU 完成显存分配、kernel 编译/缓存等一次性冷启动开销，使测量稳定。
+
+<a id="static-batching"></a>
+### Static Batching（静态批处理）
+一批请求一起进、一起出，必须等整批（最长那条）完成才能开始下一批。实现简单，但有长尾浪费
+和排队延迟两个问题。
+
+<a id="continuous-batching"></a>
+### Continuous Batching（连续批处理）
+又称 in-flight batching / iteration-level scheduling。把调度粒度降到每个 decode 步：完成的序列
+立即退出并释放 KV cache，等待的新请求立即补进空位。GPU 始终满载，是现代推理引擎（vLLM/SGLang/TGI）
+高吞吐的核心。
