@@ -211,3 +211,23 @@ W8A8：权重和激活都量化到 int8，用 int8 Tensor Core，连 compute-bou
 <a id="medusa"></a>
 ### Medusa / EAGLE
 自我投机方案：不另养草稿模型，而给模型加额外预测头（Medusa）或特征层轻量自回归头（EAGLE）来产草稿。
+
+## 服务指标
+
+<a id="throughput"></a>
+### Throughput（吞吐）
+系统单位时间产出的 token 数（tok/s）或完成的请求数（QPS）。主要由 batching 决定，是系统级视角。
+
+<a id="goodput"></a>
+### Goodput（有效吞吐）
+只计**满足 SLO**（延迟目标）的那部分吞吐。越过延迟拐点后，原始吞吐可能还涨，但请求超时不算数，
+goodput 反而下降。调服务的真正目标是"满足 SLO 前提下最大化 goodput"，而非最大化 throughput。
+
+<a id="slo"></a>
+### SLO（Service Level Objective，服务级目标）
+对服务定的量化延迟目标，通常按分位数写，如 "P99 TTFT ≤ 500ms、P99 TPOT ≤ 50ms"。
+
+<a id="tail-latency"></a>
+### Tail Latency / 分位数（P50 / P90 / P99）
+延迟的分布刻画：P99 = 99% 的请求比它快，反映"最差那批用户"的体验。评估服务看 P99，不看平均——
+平均会掩盖长尾，而一个慢请求能拖垮串联的调用链。

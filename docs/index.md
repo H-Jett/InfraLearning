@@ -36,7 +36,8 @@
 - ✅ 第 5 章 [前缀复用（Prefix Caching / RadixAttention）](chapters/01-inference/05-prefix-caching.md)
 - ✅ 第 6 章 [量化：省显存与提速](chapters/01-inference/06-quantization.md)
 - ✅ 第 7 章 [投机解码（Speculative Decoding）](chapters/01-inference/07-speculative-decoding.md)
-- 🔜 第 8 章 服务指标与压测（TTFT/TPOT/吞吐/goodput）
+- ✅ 第 8 章 [服务指标与压测（TTFT/TPOT/吞吐/goodput）](chapters/01-inference/08-serving-metrics.md)
+- 🔜 第 9 章 推理引擎全景（vLLM / SGLang / TensorRT-LLM）
 
 ## 学习环境
 
