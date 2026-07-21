@@ -29,9 +29,6 @@ theme:
 # scripts/sync_code.py 内联进章节，所以任何 Markdown 阅读器都能直接看到代码。
 
 # 只用 GitHub / 阅读器 / MkDocs 三边通用的可移植 Markdown 扩展。
-extra_css:
-  - stylesheets/extra.css
-
 markdown_extensions:
   - toc:
       permalink: true
