@@ -32,7 +32,8 @@
 - ✅ 第 2 章 [KV Cache：原理与显存计算](chapters/01-inference/02-kv-cache.md)
 - ✅ 第 3 章 [Batching：static → continuous batching](chapters/01-inference/03-batching.md)
 - ✅ 第 4 章 [PagedAttention 与显存管理](chapters/01-inference/04-paged-attention.md)
-- 🔜 第 5 章 前缀复用（Prefix Caching / RadixAttention）
+- ✅ 第 5 章 [前缀复用（Prefix Caching / RadixAttention）](chapters/01-inference/05-prefix-caching.md)
+- 🔜 第 6 章 量化：省显存与提速
 
 ## 学习环境
 

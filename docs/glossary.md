@@ -152,3 +152,13 @@ PagedAttention 里 KV cache 分页的固定大小单位，存若干个 token 的
 ### Fragmentation（碎片）
 显存的两类浪费：**内部碎片**（分配了但没用满，如预留最大长度）、**外部碎片**（释放后留下放不下
 新请求的小空洞）。PagedAttention 用定长块 + 按需分配基本消除两者。
+
+<a id="prefix-caching"></a>
+### Prefix Caching（前缀复用 / 前缀缓存）
+缓存共享前缀（如同一 system prompt、对话历史）的 KV，后续以相同前缀开头的请求直接复用这份 KV、
+跳过对该前缀的 prefill，从而降低 TTFT 和计算量。vLLM 的 Automatic Prefix Caching (APC) 是其实现之一。
+
+<a id="radix-attention"></a>
+### RadixAttention
+SGLang 提出：用**前缀树 (radix tree)** 管理所有缓存的前缀 KV，自动匹配并复用请求间的最长公共前缀，
+显存不足时按 LRU 淘汰。把前缀复用泛化到任意请求间的任意公共前缀。
