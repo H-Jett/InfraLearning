@@ -17,6 +17,7 @@ theme:
         name: 切换到亮色
   features:
     - navigation.indexes    # 允许"章"节点本身是一个页面，补充内容缩进其下
+    - navigation.footer     # 页脚上一页/下一页翻页
     - navigation.top        # 回到顶部
     - toc.follow
     - search.suggest
