@@ -91,7 +91,7 @@ decode 就快了——而目标前向本来就是 memory-bound，多验几个几
 2. 投机解码号称"无损"（不掉精度）。它靠什么保证最终输出分布和目标模型自己解码完全一致？
 3. 为什么投机解码在高并发（大 batch）场景收益会大幅缩水？（提示：回到第 1、3 章，"免费验证"的前提是什么）
 
-> 参考答案见仓库 `qa/07-speculative-decoding-qa.md`。
+> 📖 **参考答案**（想清楚再看）：[Q1](../../qa/07-speculative-decoding-qa.md#q1) · [Q2](../../qa/07-speculative-decoding-qa.md#q2) · [Q3](../../qa/07-speculative-decoding-qa.md#q3)
 
 ## 7.9 延伸阅读
 

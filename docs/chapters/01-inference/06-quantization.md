@@ -107,7 +107,7 @@ fp32 vs bf16，测权重显存和 decode 每步耗时（Qwen3-0.6B，batch=1）�
 3. weight-only 量化（W4A16：权重压 int4，计算仍 fp16）主要加速推理的哪个阶段——prefill 还是 decode？
    为什么它对另一个阶段帮助不大？
 
-> 参考答案见仓库 `qa/06-quantization-qa.md`。
+> 📖 **参考答案**（想清楚再看）：[Q1](../../qa/06-quantization-qa.md#q1) · [Q2](../../qa/06-quantization-qa.md#q2) · [Q3](../../qa/06-quantization-qa.md#q3)
 
 ## 6.10 延伸阅读
 

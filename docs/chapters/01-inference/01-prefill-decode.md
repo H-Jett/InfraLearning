@@ -163,7 +163,7 @@
    （提示：这个区间的瓶颈不在"算"。）
 3. （进阶）为什么 decode 阶段是访存受限 (memory-bound) 的？试着用"算术强度"来解释。
 
-> 参考答案见仓库 `qa/01-prefill-decode-qa.md`。
+> 📖 **参考答案**（想清楚再看）：[Q1](../../qa/01-prefill-decode-qa.md#q1) · [Q2](../../qa/01-prefill-decode-qa.md#q2) · [Q3](../../qa/01-prefill-decode-qa.md#q3)
 
 ## 1.7 延伸阅读（本章补充）
 

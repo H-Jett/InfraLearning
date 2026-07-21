@@ -58,3 +58,12 @@ nav:
       - 第 6 章 · 量化: chapters/01-inference/06-quantization.md
       - 第 7 章 · 投机解码: chapters/01-inference/07-speculative-decoding.md
       - 第 8 章 · 服务指标与压测: chapters/01-inference/08-serving-metrics.md
+  - 思考题参考答案:
+      - 第 1 章: qa/01-prefill-decode-qa.md
+      - 第 2 章: qa/02-kv-cache-qa.md
+      - 第 3 章: qa/03-batching-qa.md
+      - 第 4 章: qa/04-paged-attention-qa.md
+      - 第 5 章: qa/05-prefix-caching-qa.md
+      - 第 6 章: qa/06-quantization-qa.md
+      - 第 7 章: qa/07-speculative-decoding-qa.md
+      - 第 8 章: qa/08-serving-metrics-qa.md

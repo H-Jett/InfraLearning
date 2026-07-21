@@ -99,7 +99,7 @@
    （提示：TTFT 和 TPOT 分别由哪个阶段决定，那个阶段先进入 compute-bound？）
 3. 为什么评估服务要看 P99 延迟，而不是平均延迟？
 
-> 参考答案见仓库 `qa/08-serving-metrics-qa.md`。
+> 📖 **参考答案**（想清楚再看）：[Q1](../../qa/08-serving-metrics-qa.md#q1) · [Q2](../../qa/08-serving-metrics-qa.md#q2) · [Q3](../../qa/08-serving-metrics-qa.md#q3)
 
 ## 8.9 延伸阅读
 

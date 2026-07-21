@@ -120,7 +120,7 @@ continuous batching 让序列**不断进进出出、每条长度还都不一样*
 3. continuous batching 让序列不断进出、长度不一，会给 KV cache 的显存管理带来什么麻烦？
    （这正是下一章 PagedAttention 要解决的。）
 
-> 参考答案见仓库 `qa/03-batching-qa.md`。
+> 📖 **参考答案**（想清楚再看）：[Q1](../../qa/03-batching-qa.md#q1) · [Q2](../../qa/03-batching-qa.md#q2) · [Q3](../../qa/03-batching-qa.md#q3)
 
 ## 3.8 延伸阅读
 

@@ -76,7 +76,7 @@
 3. RadixAttention 用一棵前缀树来管理缓存。为什么"树"这个结构特别适合"很多请求共享**不同长度**前缀"
    的场景？（想想树的路径、分叉点各代表什么）
 
-> 参考答案见仓库 `qa/05-prefix-caching-qa.md`。
+> 📖 **参考答案**（想清楚再看）：[Q1](../../qa/05-prefix-caching-qa.md#q1) · [Q2](../../qa/05-prefix-caching-qa.md#q2) · [Q3](../../qa/05-prefix-caching-qa.md#q3)
 
 ## 5.8 延伸阅读
 

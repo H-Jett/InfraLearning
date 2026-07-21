@@ -86,7 +86,7 @@
 3. 为什么"多个请求共用同一个长 system prompt"时，PagedAttention 能省显存和算力？
    连续预留的朴素法为什么做不到？
 
-> 参考答案见仓库 `qa/04-paged-attention-qa.md`。
+> 📖 **参考答案**（想清楚再看）：[Q1](../../qa/04-paged-attention-qa.md#q1) · [Q2](../../qa/04-paged-attention-qa.md#q2) · [Q3](../../qa/04-paged-attention-qa.md#q3)
 
 ## 4.8 延伸阅读
 
