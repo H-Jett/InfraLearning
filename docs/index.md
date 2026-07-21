@@ -33,7 +33,8 @@
 - ✅ 第 3 章 [Batching：static → continuous batching](chapters/01-inference/03-batching.md)
 - ✅ 第 4 章 [PagedAttention 与显存管理](chapters/01-inference/04-paged-attention.md)
 - ✅ 第 5 章 [前缀复用（Prefix Caching / RadixAttention）](chapters/01-inference/05-prefix-caching.md)
-- 🔜 第 6 章 量化：省显存与提速
+- ✅ 第 6 章 [量化：省显存与提速](chapters/01-inference/06-quantization.md)
+- 🔜 第 7 章 投机解码（Speculative Decoding）
 
 ## 学习环境
 

@@ -55,3 +55,4 @@ nav:
       - 第 3 章 · Batching: chapters/01-inference/03-batching.md
       - 第 4 章 · PagedAttention: chapters/01-inference/04-paged-attention.md
       - 第 5 章 · 前缀复用: chapters/01-inference/05-prefix-caching.md
+      - 第 6 章 · 量化: chapters/01-inference/06-quantization.md

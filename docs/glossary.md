@@ -162,3 +162,32 @@ PagedAttention 里 KV cache 分页的固定大小单位，存若干个 token 的
 ### RadixAttention
 SGLang 提出：用**前缀树 (radix tree)** 管理所有缓存的前缀 KV，自动匹配并复用请求间的最长公共前缀，
 显存不足时按 LRU 淘汰。把前缀复用泛化到任意请求间的任意公共前缀。
+
+## 量化
+
+<a id="quantization"></a>
+### Quantization（量化）
+用更少的比特表示数值（权重/激活/KV），如 bf16→int8/int4/fp8。通过 `q=round(x/scale)+zero_point`
+线性映射到整数。收益：省显存；decode 带宽受限时提速；低精度 Tensor Core 加速计算。代价是量化误差。
+
+<a id="ptq-qat"></a>
+### PTQ / QAT
+PTQ (Post-Training Quantization，训练后量化)：训练完再用少量校准数据量化，简单常用（GPTQ/AWQ）。
+QAT (Quantization-Aware Training，量化感知训练)：训练时就模拟量化，精度更好但成本高。
+
+<a id="gptq"></a>
+### GPTQ
+一种 weight-only 训练后量化方法，逐层贪心地量化权重并最小化输出误差，int4 常近乎无损。
+
+<a id="awq"></a>
+### AWQ（Activation-aware Weight Quantization）
+weight-only 量化：根据激活的重要性保护少数关键权重通道，其余低精度，int4 下精度好、速度快。
+
+<a id="fp8"></a>
+### FP8（8 位浮点，E4M3 / E5M2）
+1 字节浮点格式，Hopper 起硬件原生支持。E4M3 精度高、E5M2 动态范围大。推理和训练（配合缩放）都在用。
+
+<a id="weight-only"></a>
+### Weight-only 量化（如 W4A16）/ W8A8
+Weight-only：只量化权重（如 int4），计算时反量化回 fp16——主要加速大模型 decode（访存受限）。
+W8A8：权重和激活都量化到 int8，用 int8 Tensor Core，连 compute-bound 的 prefill 也能提速（如 SmoothQuant）。
