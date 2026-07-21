@@ -34,7 +34,8 @@
 - ✅ 第 4 章 [PagedAttention 与显存管理](chapters/01-inference/04-paged-attention.md)
 - ✅ 第 5 章 [前缀复用（Prefix Caching / RadixAttention）](chapters/01-inference/05-prefix-caching.md)
 - ✅ 第 6 章 [量化：省显存与提速](chapters/01-inference/06-quantization.md)
-- 🔜 第 7 章 投机解码（Speculative Decoding）
+- ✅ 第 7 章 [投机解码（Speculative Decoding）](chapters/01-inference/07-speculative-decoding.md)
+- 🔜 第 8 章 服务指标与压测（TTFT/TPOT/吞吐/goodput）
 
 ## 学习环境
 

@@ -22,8 +22,8 @@
 | 4 | PagedAttention 与显存管理 | 像操作系统分页一样管 KV cache | ✅ |
 | 5 | 前缀复用 (Prefix Caching / RadixAttention) | 共享前缀怎么省算力和显存 | ✅ |
 | 6 | 量化 (INT8/INT4/FP8, GPTQ/AWQ, KV 量化) | 减少要搬的字节 → 提速省显存 | ✅ |
-| 7 | 投机解码 (Speculative / Medusa / EAGLE) | 用小模型/多头猜 token，绕开串行瓶颈 | 🔜 |
-| 8 | 服务指标与压测 (TTFT/TPOT/吞吐/goodput/SLO) | 怎么量化"快"、怎么压测 | ⬜ |
+| 7 | 投机解码 (Speculative / Medusa / EAGLE) | 用小模型/多头猜 token，绕开串行瓶颈 | ✅ |
+| 8 | 服务指标与压测 (TTFT/TPOT/吞吐/goodput/SLO) | 怎么量化"快"、怎么压测 | 🔜 |
 | 9 | 推理引擎全景 (vLLM / SGLang / TensorRT-LLM) | 主流引擎架构对比 | ⬜ |
 
 > **学完能**：看懂并配置一个高性能推理服务，知道每个旋钮为什么有效。

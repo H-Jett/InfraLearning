@@ -191,3 +191,23 @@ weight-only 量化：根据激活的重要性保护少数关键权重通道，�
 ### Weight-only 量化（如 W4A16）/ W8A8
 Weight-only：只量化权重（如 int4），计算时反量化回 fp16——主要加速大模型 decode（访存受限）。
 W8A8：权重和激活都量化到 int8，用 int8 Tensor Core，连 compute-bound 的 prefill 也能提速（如 SmoothQuant）。
+记号：W=weights、A=activations，数字为比特数（W4A16 = 权重 4 bit、激活 16 bit）。
+
+## 投机解码
+
+<a id="speculative-decoding"></a>
+### Speculative Decoding（投机解码）
+用一个又小又快的草稿模型先猜 K 个 token，目标（大）模型一次并行验证，接受与目标一致的最长前缀。
+一次目标前向吐出多个 token，加速 decode；靠接受/拒绝采样保证输出分布严格等于目标模型——**无损**。
+
+<a id="draft-model"></a>
+### Draft Model（草稿模型）
+投机解码里那个又小又快、负责提出候选 token 的模型。也可用模型自身的额外头（Medusa/EAGLE）代替。
+
+<a id="acceptance-rate"></a>
+### Acceptance Rate（接受率 α）
+草稿 token 被目标模型接受的比例。α 越高（草稿越像目标），每次验证吐出的 token 越多、加速越大。
+
+<a id="medusa"></a>
+### Medusa / EAGLE
+自我投机方案：不另养草稿模型，而给模型加额外预测头（Medusa）或特征层轻量自回归头（EAGLE）来产草稿。
