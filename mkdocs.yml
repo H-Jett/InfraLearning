@@ -48,6 +48,7 @@ nav:
   - 学习路线图: roadmap.md
   - 术语表: glossary.md
   - 第一部分 · 推理与服务:
+      - chapters/01-inference/00-intro.md
       - 第 1 章 · Prefill 与 Decode:
           - chapters/01-inference/01-prefill-decode.md
           - 补充 A · GPU 存储层级与 HBM: chapters/01-inference/A1-gpu-storage-hbm.md
