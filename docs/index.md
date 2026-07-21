@@ -37,7 +37,9 @@
 - ✅ 第 6 章 [量化：省显存与提速](chapters/01-inference/06-quantization.md)
 - ✅ 第 7 章 [投机解码（Speculative Decoding）](chapters/01-inference/07-speculative-decoding.md)
 - ✅ 第 8 章 [服务指标与压测（TTFT/TPOT/吞吐/goodput）](chapters/01-inference/08-serving-metrics.md)
-- 🔜 第 9 章 推理引擎全景（vLLM / SGLang / TensorRT-LLM）
+- ✅ 第 9 章 [推理引擎全景（vLLM / SGLang / TensorRT-LLM）](chapters/01-inference/09-engines.md)
+
+**🎉 第一部分（推理与服务）全部完成！** 下一站：第二部分 · GPU 架构与算子优化。
 
 ## 学习环境
 

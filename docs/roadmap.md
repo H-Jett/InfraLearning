@@ -24,7 +24,7 @@
 | 6 | 量化 (INT8/INT4/FP8, GPTQ/AWQ, KV 量化) | 减少要搬的字节 → 提速省显存 | ✅ |
 | 7 | 投机解码 (Speculative / Medusa / EAGLE) | 用小模型/多头猜 token，绕开串行瓶颈 | ✅ |
 | 8 | 服务指标与压测 (TTFT/TPOT/吞吐/goodput/SLO) | 怎么量化"快"、怎么压测 | ✅ |
-| 9 | 推理引擎全景 (vLLM / SGLang / TensorRT-LLM) | 主流引擎架构对比 | 🔜 |
+| 9 | 推理引擎全景 (vLLM / SGLang / TensorRT-LLM) | 主流引擎架构对比 | ✅ |
 
 > **学完能**：看懂并配置一个高性能推理服务，知道每个旋钮为什么有效。
 
@@ -36,7 +36,7 @@
 
 | 章 | 主题 | 一句话学到什么 | 状态 |
 |----|------|----------------|------|
-| 10 | GPU 架构深入 | SM / warp / Tensor Core / roofline / Brent's Theorem | ⬜ |
+| 10 | GPU 架构深入 | SM / warp / Tensor Core / roofline / Brent's Theorem | 🔜 |
 | 11 | CUDA 编程模型 | grid/block/thread、shared memory、访存合并 | ⬜ |
 | 12 | 性能分析 | Nsight Systems/Compute、用 roofline 定位瓶颈 | ⬜ |
 | 13 | 算子优化基本功 | bank conflict + padding/swizzling、occupancy、向量化读取、register spill、warp divergence | ⬜ |

@@ -231,3 +231,19 @@ goodput 反而下降。调服务的真正目标是"满足 SLO 前提下最大化
 ### Tail Latency / 分位数（P50 / P90 / P99）
 延迟的分布刻画：P99 = 99% 的请求比它快，反映"最差那批用户"的体验。评估服务看 P99，不看平均——
 平均会掩盖长尾，而一个慢请求能拖垮串联的调用链。
+
+## 推理引擎
+
+<a id="vllm"></a>
+### vLLM
+PagedAttention 的发源地。Python 为主、易扩展、生态最大、兼容多硬件，功能全的"默认选择"引擎。
+
+<a id="sglang"></a>
+### SGLang
+招牌是 RadixAttention（前缀树自动复用）+ 可编程前端（结构化/分支/并行生成），擅长多轮对话、agent、
+高前缀复用场景。
+
+<a id="tensorrt-llm"></a>
+### TensorRT-LLM
+NVIDIA 官方引擎，走提前编译 (AOT) 路线：把模型编译成高度优化的引擎，配 in-flight batching，
+在 NVIDIA 卡上追求极致性能，但编译流程重、灵活性低、只服务 NVIDIA。
