@@ -247,3 +247,42 @@ PagedAttention 的发源地。Python 为主、易扩展、生态最大、兼容�
 ### TensorRT-LLM
 NVIDIA 官方引擎，走提前编译 (AOT) 路线：把模型编译成高度优化的引擎，配 in-flight batching，
 在 NVIDIA 卡上追求极致性能，但编译流程重、灵活性低、只服务 NVIDIA。
+
+## GPU 架构与算子
+
+<a id="sm"></a>
+### SM（Streaming Multiprocessor，流多处理器）
+GPU 的基本计算单元，内含 CUDA cores、Tensor cores、warp 调度器、shared memory/L1、寄存器。
+一个 block 被整体分派到一个 SM 上执行（RTX 5090 有 170 个 SM）。
+
+<a id="warp"></a>
+### Warp（线程束）
+32 个线程一组，是 GPU 真正的调度/执行单位。同一 warp 内线程按 SIMT 锁步执行同一指令。
+
+<a id="simt"></a>
+### SIMT（Single Instruction, Multiple Threads）
+GPU 执行模型：一个 warp 的 32 个线程同一时刻执行同一条指令、各作用于自己的数据。
+
+<a id="warp-divergence"></a>
+### Warp Divergence（束内分支发散）
+同一 warp 内线程走了不同分支（if/else），硬件只能分支串行执行、另一半线程闲置，吞吐下降。
+可用掩码算术（`v += c*a + (1-c)*b`）消除。
+
+<a id="tensor-core"></a>
+### Tensor Core
+矩阵乘专用硬件单元，一条指令做一小块矩阵乘加，吞吐远高于 CUDA core，但用低精度（bf16/fp16/tf32/int8/fp8）。
+实测 bf16 矩阵乘 ≈ fp32 CUDA core 的 3.5×。
+
+<a id="tf32"></a>
+### TF32（TensorFloat-32）
+Ampere 起 Tensor Core 的一种精度：19 位有效，介于 fp32 与 bf16 之间，让 fp32 输入也能走 Tensor Core 提速。
+
+<a id="roofline"></a>
+### Roofline 模型
+横轴算术强度 (FLOP/byte)、纵轴可达算力，两道屋顶 = min(峰值算力, 带宽×算术强度)。拐点算术强度 =
+峰值算力/带宽（5090 实测 ≈ 151）。强度低于拐点 → memory-bound，高于 → compute-bound。
+
+<a id="brent"></a>
+### Brent 定理（work-span）
+用 p 个处理器，运行时间 max(W/p, D) ≤ T_p ≤ W/p + D。W=总运算量、D=最长依赖链（深度）。
+推论：再多核也快不过 D，所以并行算法要压低 depth（如树状归约把 depth 从 N 降到 log N）。

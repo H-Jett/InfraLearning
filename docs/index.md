@@ -39,7 +39,9 @@
 - ✅ 第 8 章 [服务指标与压测（TTFT/TPOT/吞吐/goodput）](chapters/01-inference/08-serving-metrics.md)
 - ✅ 第 9 章 [推理引擎全景（vLLM / SGLang / TensorRT-LLM）](chapters/01-inference/09-engines.md)
 
-**🎉 第一部分（推理与服务）全部完成！** → [第一部分小结（速查）](chapters/01-inference/summary.md)。下一站：第二部分 · GPU 架构与算子优化。
+**🎉 第一部分（推理与服务）全部完成！** → [第一部分小结（速查）](chapters/01-inference/summary.md)。**下一站：第二部分 · GPU 架构与算子优化**（🔜 进行中）：
+
+- ✅ 第 10 章 [GPU 架构深入](chapters/02-gpu-kernels/10-gpu-arch.md)
 
 ## 学习环境
 

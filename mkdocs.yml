@@ -62,6 +62,9 @@ nav:
       - 第 8 章 · 服务指标与压测: chapters/01-inference/08-serving-metrics.md
       - 第 9 章 · 推理引擎全景: chapters/01-inference/09-engines.md
       - 第一部分小结（速查）: chapters/01-inference/summary.md
+  - 第二部分 · GPU 架构与算子优化:
+      - chapters/02-gpu-kernels/00-intro.md
+      - 第 10 章 · GPU 架构深入: chapters/02-gpu-kernels/10-gpu-arch.md
   - 思考题参考答案:
       - 第 1 章: qa/01-prefill-decode-qa.md
       - 第 2 章: qa/02-kv-cache-qa.md
@@ -72,3 +75,4 @@ nav:
       - 第 7 章: qa/07-speculative-decoding-qa.md
       - 第 8 章: qa/08-serving-metrics-qa.md
       - 第 9 章: qa/09-engines-qa.md
+      - 第 10 章: qa/10-gpu-arch-qa.md
