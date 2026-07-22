@@ -14,12 +14,16 @@
 
 ## 10.2 执行层级：GPU → SM → warp → thread
 
-```
-GPU
- └─ SM（Streaming Multiprocessor，流多处理器；RTX 5090 有 170 个）
-     ├─ 若干 warp 调度器、CUDA cores、Tensor cores
-     ├─ shared memory / L1（片上，快）
-     └─ 寄存器堆
+```mermaid
+graph TD
+    GPU["GPU"] --> SM["SM 流多处理器 ×170"]
+    SM --> SCHED["warp 调度器"]
+    SM --> CC["CUDA cores"]
+    SM --> TC["Tensor cores"]
+    SM --> SMEM["shared memory / L1（片上，快）"]
+    SM --> REG["寄存器堆"]
+    SCHED --> WARP["warp = 32 线程（真正的调度执行单位）"]
+    WARP --> TH["thread ×32（SIMT 锁步）"]
 ```
 
 软件侧你写的是 **grid → block → thread**：
