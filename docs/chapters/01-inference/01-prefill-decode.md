@@ -16,7 +16,15 @@
      → 预测 "。"    → "今天天气很好。"
 ```
 
-这个"逐 token"的特性，把推理天然切成了两个阶段。
+这个"逐 token"的特性，把推理天然切成了两个阶段：
+
+```mermaid
+flowchart LR
+    P["整段 prompt<br/>N 个 token"] -->|"一次前向 · 全部并行<br/>compute-bound"| F["Prefill"]
+    F --> t1["token 1"]
+    t1 -->|"逐 token · 串行<br/>memory-bound"| t2["token 2"]
+    t2 --> t3["token 3 ..."]
+```
 
 ## 1.2 两个阶段
 
@@ -104,6 +112,10 @@
 - Decode **1** 个 token 却要 **37.9 ms**。
 
 **解码 1 个 token 的耗时，是预填充 4096 个 token 的一半！**
+
+换算成"每 token 成本"，decode 比 prefill 贵约 2000 倍：
+
+![每 token 耗时对比：prefill 摊到每个 token 只要 0.017 ms，decode 每个 token 要 37.9 ms（对数纵轴）。](figures/ch1_prefill_vs_decode.png)
 
 为什么单个 token 这么"贵"？因为 decode 阶段是**访存受限 (memory-bound)** 的：
 

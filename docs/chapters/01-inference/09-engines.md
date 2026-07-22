@@ -17,6 +17,20 @@
 6. **完成即退出**：某序列生成完 → 立即释放它的 block（第 4 章）、退出 batch，空位由等待队列补上（第 3 章）。
 7. **流式返回 & 分词回文本**，KV block 归还池子。
 
+```mermaid
+flowchart TD
+    R["请求到达 + 分词"] --> S["调度器<br/>continuous batching（3）"]
+    S --> C{"前缀命中缓存?（5）"}
+    C -->|"是"| REU["复用 KV block，跳过这段 prefill"]
+    C -->|"否"| PF["Prefill，写入 paged block（1,4）"]
+    REU --> DEC["Decode 循环（1）<br/>可叠投机解码（7）"]
+    PF --> DEC
+    DEC --> DONE{"生成完?"}
+    DONE -->|"否"| DEC
+    DONE -->|"是"| FREE["释放 block、退出，空位补新请求（3,4）"]
+    FREE --> OUT["流式返回"]
+```
+
 **前 8 课的每个概念，都是这条流水线上的一个环节。**
 
 ## 9.2 技术 → 引擎 映射

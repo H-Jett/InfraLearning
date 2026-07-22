@@ -43,6 +43,8 @@ x ≈ (q - zero_point) × scale           # 反量化
 - **fp8**（1 字节，E4M3 / E5M2）：新硬件（Hopper 起）原生支持，训练推理都在用。
 - **int8**（1 字节）/ **int4**（0.5 字节）：推理量化主力，int4 多用于 weight-only。
 
+![权重显存随精度逐级减半：fp32→bf16→int8→int4，0.6B 模型从 2.22 GiB 降到 0.28 GiB。](figures/ch6_quant_memory.png)
+
 ## 6.5 实验 A：显存精确减半，但速度几乎没变（关键！）
 
 fp32 vs bf16，测权重显存和 decode 每步耗时（Qwen3-0.6B，batch=1）：
