@@ -81,6 +81,8 @@ RTX 5090 实测同一个 8192³ 矩阵乘：
 
 RTX 5090 实测：峰值 bf16 ≈ 236 TFLOPS，带宽 ≈ 1570 GB/s → **拐点 ≈ 151 FLOP/byte**。
 
+![Roofline 示意图（RTX 5090 实测）：横轴算术强度、纵轴可达算力；左侧斜线是带宽屋顶、右侧水平线是算力屋顶，交点即拐点 ≈151。decode（算术强度≈1）落在左侧 memory-bound，大矩阵乘落在右侧 compute-bound。](figures/roofline.png)
+
 - 算术强度 **< 151** → 落在斜线上 → **memory-bound**（如 decode，强度 ≈ 1，远在左边）；
 - 算术强度 **> 151** → 落在水平线上 → **compute-bound**（如大矩阵乘）。
 
