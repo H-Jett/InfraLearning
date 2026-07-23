@@ -1,13 +1,17 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-代码同步脚本：把 exercises/ 下的 .py 真实内容，灌进各章 .md 的代码附录里。
+同步脚本：把源码(.py)和运行日志(.log)的真实内容，灌进各章 .md 附录里。
 
-设计目标（见设计讨论）：
-  - .py 是代码的**唯一真源**（你编辑它、运行它）。
-  - .md 里存的是**真正的 fenced 代码块**（不是构建期引用指令），这样在 GitHub、
-    任意 Markdown 阅读器、MkDocs 三边都能直接看到代码。
-  - 本脚本保证两者一致，杜绝复制粘贴导致的漂移。
+两类标记：
+  <!-- CODE:exercises/PART/NN_name.py START -->      内联源码（唯一真源 = .py）
+  <!-- OUTPUT:exercises/PART/logs/NN_name.log START --> 内联运行日志（唯一真源 = .log）
+日志由 scripts/run_exercises.py 生成。
+
+设计目标：
+  - .py / .log 是唯一真源；.md 里存的是**真正的 fenced 块**（不是构建期引用），
+    这样在 GitHub、任意 Markdown 阅读器、MkDocs 三边都能直接看到代码和输出。
+  - 本脚本保证 .md 与源一致，杜绝复制粘贴导致的漂移。
 
 用法：
   在 .md 里放一对标记（同一行注释）：
@@ -39,12 +43,13 @@ log = logging.getLogger("sync_code")
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 
-# 匹配一对标记之间的整个代码块。捕获组：
-#   1 = 相对路径  2 = START 与 ``` 之间的原样内容(含围栏语言行)  —— 实际替换时整体重建
+# 匹配一对标记之间的整块内容。两类标记：
+#   CODE:path   → 内联源码（.py 等），按后缀选语言
+#   OUTPUT:path → 内联运行日志（.log），用 text 围栏
 BLOCK_RE = re.compile(
-    r"(<!-- CODE:(?P<path>[^\s]+) START -->)"
+    r"(<!-- (?P<kind>CODE|OUTPUT):(?P<path>[^\s]+) START -->)"
     r".*?"
-    r"(<!-- CODE:(?P=path) END -->)",
+    r"(<!-- (?P=kind):(?P=path) END -->)",
     re.DOTALL,
 )
 
@@ -52,17 +57,17 @@ BLOCK_RE = re.compile(
 LANG = {".py": "python", ".sh": "bash", ".yaml": "yaml", ".yml": "yaml"}
 
 
-def build_block(rel_path: str) -> str:
-    """根据相对路径读取源码，生成 START..END 之间应有的完整文本。"""
+def build_block(kind: str, rel_path: str) -> str:
+    """根据标记类型和相对路径读取文件，生成 START..END 之间应有的完整文本。"""
     src = REPO_ROOT / rel_path
     if not src.exists():
-        raise FileNotFoundError(f"源码不存在: {rel_path}")
-    lang = LANG.get(src.suffix, "")
-    code = src.read_text(encoding="utf-8").rstrip("\n")
+        raise FileNotFoundError(f"{kind} 源文件不存在: {rel_path}（练习需先 run_exercises.py 生成日志）")
+    lang = "text" if kind == "OUTPUT" else LANG.get(src.suffix, "")
+    body = src.read_text(encoding="utf-8").rstrip("\n")
     return (
-        f"<!-- CODE:{rel_path} START -->\n"
-        f"```{lang}\n{code}\n```\n"
-        f"<!-- CODE:{rel_path} END -->"
+        f"<!-- {kind}:{rel_path} START -->\n"
+        f"```{lang}\n{body}\n```\n"
+        f"<!-- {kind}:{rel_path} END -->"
     )
 
 
@@ -76,7 +81,7 @@ def process(md_path: Path, check: bool) -> bool:
         nonlocal ok, n
         n += 1
         rel = m.group("path")
-        want = build_block(rel)
+        want = build_block(m.group("kind"), rel)
         if m.group(0) != want:
             ok = False
             if not check:

@@ -67,6 +67,18 @@ mkdocs.yml                  # 站点配置
 <!-- CODE:exercises/PART/NN_name.py END -->
 ```
 
+**运行日志（必做）**：每个练习都要**真机跑一遍并把输出存下来、在章节里展示**。由
+`scripts/run_exercises.py` 跑 `exercises/*/NN_*.py`、把 stdout 存成 `exercises/PART/logs/NN_name.log`
+（日志唯一真源）；章节代码附录之后用 OUTPUT 标记内联该日志（```text 围栏）：
+```
+<!-- OUTPUT:exercises/PART/logs/NN_name.log START -->
+​```text
+（由 scripts/sync_code.py 自动填入，勿手改）
+​```
+<!-- OUTPUT:exercises/PART/logs/NN_name.log END -->
+```
+日志随机器有波动，属正常；改了练习代码后重跑 `run_exercises.py` 刷新日志、再 `sync_code.py` 同步。
+
 **术语表**：新术语加到 `glossary.md` 对应主题下，前置 `<a id="slug"></a>`。
 
 ## 6. 画图（Mermaid + matplotlib）
@@ -83,9 +95,9 @@ mkdocs.yml                  # 站点配置
 
 ## 7. 新增一章的标准流程（照做）
 
-1. 写 `exercises/PART/NN_name.py`，**真机跑通**、记下真实数字；
+1. 写 `exercises/PART/NN_name.py`，用 `python scripts/run_exercises.py` **真机跑通并生成日志**、记下真实数字；
 2. 需要图就写 `plot_*.py` 生成 PNG，或在章节里写 Mermaid；
-3. 写 `docs/chapters/PART/NN-name.md`（概念 + 真机数据/图 + 3 思考题 + 附录代码标记）；
+3. 写 `docs/chapters/PART/NN-name.md`（概念 + 真机数据/图 + 3 思考题 + 附录：代码标记 + **运行输出标记**）；
 4. 写 `docs/qa/NN-name-qa.md`（问题 + 正确答案，q1/q2/q3 锚点）；
 5. 新术语加进 `glossary.md`；
 6. 更新 `mkdocs.yml`（章节 nav + 答案 nav）、`docs/index.md`（进度）、`docs/roadmap.md`（状态）；
@@ -94,7 +106,8 @@ mkdocs.yml                  # 站点配置
 ## 8. 构建与校验（提交前必做）
 
 ```bash
-python scripts/sync_code.py            # 把 .py 内联进章节
+python scripts/run_exercises.py        # 跑所有练习，捕获输出到 exercises/*/logs/（改了练习后重跑；可传编号只跑部分）
+python scripts/sync_code.py            # 把 .py 源码 + .log 日志内联进章节
 python scripts/sync_code.py --check    # 校验已同步（不一致退出码 1）
 mkdocs build --strict                  # 坏链接/警告即失败（CI 也跑这条）
 ```

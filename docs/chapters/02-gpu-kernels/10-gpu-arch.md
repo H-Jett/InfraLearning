@@ -245,6 +245,40 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/02-gpu-kernels/10_gpu_arch_roofline.py END -->
 
+**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+
+<!-- OUTPUT:exercises/02-gpu-kernels/logs/10_gpu_arch_roofline.log START -->
+```text
+============================================================
+A) GPU 硬件参数
+============================================================
+名称                : NVIDIA GeForce RTX 5090
+SM 数 (multi_processor_count) : 170
+显存                : 31.4 GiB
+算力架构 (compute cap)        : 12.0
+
+============================================================
+B) 峰值算力：大矩阵乘 (N=8192)，不同精度实测 TFLOPS
+============================================================
+fp32  (CUDA core)   :    65.7 TFLOPS   (16.7 ms)
+TF32  (Tensor Core) :   112.8 TFLOPS   (9.8 ms)
+bf16  (Tensor Core) :   233.2 TFLOPS   (4.7 ms)
+
+============================================================
+C) 显存带宽：大张量逐元素相加 (c = a + b)
+============================================================
+实测带宽            :    1571 GB/s   (0.51 ms)
+
+============================================================
+Roofline 拐点（临界算术强度）
+============================================================
+临界算术强度 = 峰值算力 / 带宽 ≈ 148 FLOP/byte
+→ 算术强度 < 148：memory-bound（如 decode，强度≈1）
+→ 算术强度 > 148：compute-bound（如大矩阵乘 prefill）
+这就是第 1 章 memory/compute-bound 判据的定量版本。
+```
+<!-- OUTPUT:exercises/02-gpu-kernels/logs/10_gpu_arch_roofline.log END -->
+
 ---
 
 [^sm]: SM (Streaming Multiprocessor)：GPU 的基本计算单元。详见[术语表](../../glossary.md#sm)。

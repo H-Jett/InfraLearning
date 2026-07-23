@@ -1,0 +1,47 @@
+==================================================================
+模型 Qwen-like-70B（70B）  场景「单用户客服(长system prompt)」
+==================================================================
+权重显存        ≈ 130.4 GiB
+KV cache/‌token  ≈ 320 KiB
+KV cache 总量   ≈ 1.4 GiB（seqlen 4500 × batch 1）
+合计需求        ≈ 131.8 GiB / 可用 80 GiB ⚠️ 超了！
+
+TPOT 下限（模型字节/带宽）≈ 77.8 ms/token
+decode 大致处于：memory-bound（算力有富余）
+
+建议优化（按前 8 课规则）：
+  1. PagedAttention + continuous batching
+     → 引擎地基：消碎片、吞吐第一杠杆，用任何现代引擎都自带
+  2. KV cache 量化 / GQA / MLA
+     → 显存超了，KV cache 是大头（第2章），砍它最直接
+  3. 权重量化 (int8/int4)
+     → 腾出权重显存给 KV cache（第6章）
+  4. 前缀复用 (Prefix Caching / RadixAttention)
+     → 共享前缀占 90%，且 prompt 长，省大量重复 prefill（第5章）
+  5. weight-only 量化 (W4A16)
+     → 大模型 decode 是 bandwidth-bound，压权重≈按字节比提速（第6章）
+  6. 投机解码 (Speculative / EAGLE)
+     → 低并发、算力有富余，无损降 TPOT（第7章）
+
+==================================================================
+模型 Qwen-like-70B（70B）  场景「离线批量处理」
+==================================================================
+权重显存        ≈ 130.4 GiB
+KV cache/‌token  ≈ 320 KiB
+KV cache 总量   ≈ 156.2 GiB（seqlen 2000 × batch 256）
+合计需求        ≈ 286.6 GiB / 可用 80 GiB ⚠️ 超了！
+
+TPOT 下限（模型字节/带宽）≈ 77.8 ms/token
+decode 大致处于：compute-bound（算力已被喂饱）
+
+建议优化（按前 8 课规则）：
+  ✗ 投机解码：高并发下目标已 compute-bound，收益小，跳过（第7章）
+  ✗ 前缀复用：无共享前缀，用不上（第5章）
+  1. PagedAttention + continuous batching
+     → 引擎地基：消碎片、吞吐第一杠杆，用任何现代引擎都自带
+  2. KV cache 量化 / GQA / MLA
+     → 显存超了，KV cache 是大头（第2章），砍它最直接
+  3. 权重量化 (int8/int4)
+     → 腾出权重显存给 KV cache（第6章）
+  4. weight-only 量化 (W4A16)
+     → 大模型 decode 是 bandwidth-bound，压权重≈按字节比提速（第6章）

@@ -200,6 +200,29 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/08_serving_metrics.py END -->
 
+**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+
+<!-- OUTPUT:exercises/01-inference/logs/08_serving_metrics.log START -->
+```text
+SLO：TPOT ≤ 25.0 ms
+
+    并发 |  TTFT(ms) |  TPOT(ms) |    吞吐(tok/s) |   满足SLO |    goodput
+------------------------------------------------------------------
+     1 |      18.4 |     17.04 |           59 |      ✅ |         59
+     8 |      18.7 |     17.45 |          459 |      ✅ |        459
+    32 |      19.4 |     17.57 |         1822 |      ✅ |       1822
+    64 |      20.0 |     17.56 |         3645 |      ✅ |       3645
+   128 |      22.6 |     17.52 |         7305 |      ✅ |       7305
+   256 |      40.0 |     17.94 |        14273 |      ✅ |      14273
+   512 |      76.2 |     18.89 |        27105 |      ✅ |      27105
+  1024 |     156.4 |     30.03 |        34101 |      ❌ |          0
+
+最大 goodput 出现在并发 = 512（27105 tok/s）——再往上虽然原始吞吐还涨，
+但 TPOT 越过 SLO，那些请求'超时'不算有效服务，goodput 掉回 0。
+要点：调服务不是最大化吞吐，而是【在满足 SLO 的前提下】最大化 goodput。
+```
+<!-- OUTPUT:exercises/01-inference/logs/08_serving_metrics.log END -->
+
 ---
 
 [^ttft]: TTFT (Time To First Token)：首 token 延迟，主要由 prefill 决定。详见[术语表](../../glossary.md#ttft)。

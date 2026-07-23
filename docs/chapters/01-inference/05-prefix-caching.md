@@ -184,6 +184,24 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/05_prefix_caching.py END -->
 
+**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+
+<!-- OUTPUT:exercises/01-inference/logs/05_prefix_caching.log START -->
+```text
+每个请求各自的 query 长度 = 16 token
+
+    前缀长度 |    朴素 TTFT(ms) |      前缀复用 TTFT(ms) |       加速 |   省下 prefill
+--------------------------------------------------------------------------
+     256 |          19.40 |              20.23 |     1.0x |       -4.3%
+    1024 |          19.36 |              19.99 |     1.0x |       -3.3%
+    4096 |          55.93 |              20.10 |     2.8x |       64.1%
+   16384 |         335.69 |              46.77 |     7.2x |       86.1%
+
+结论：共享前缀越长，前缀复用省得越多——因为朴素每次都在重算这段前缀的 prefill，
+      而前缀复用把它摊成'只算一次'。多轮对话、长 system prompt、few-shot 场景收益巨大。
+```
+<!-- OUTPUT:exercises/01-inference/logs/05_prefix_caching.log END -->
+
 ---
 
 [^prefix]: Prefix Caching（前缀复用/前缀缓存）：缓存共享前缀的 KV，后续同前缀请求直接复用、跳过其 prefill。详见[术语表](../../glossary.md#prefix-caching)。

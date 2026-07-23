@@ -228,6 +228,48 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/06_quantization.py END -->
 
+**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+
+<!-- OUTPUT:exercises/01-inference/logs/06_quantization.log START -->
+```text
+====================================================================
+实验 A（真机）：fp32 vs bf16 —— 显存减半，但速度几乎不变（为什么？）
+====================================================================
+    精度 |      权重显存(MiB) |     decode每步(ms)
+--------------------------------------------
+  fp32 |           2274 |            16.97
+  bf16 |           1137 |            16.38
+
+显存比 fp32/bf16 = 2.00x（精确减半）
+速度比 fp32/bf16 = 1.04x（几乎没变！）
+原因：0.6B 小模型 + batch=1 的 decode 是 launch-bound（卡在 kernel 发射开销，
+      不是显存带宽），所以减少权重字节救不了速度——但显存实实在在省了一半。
+
+====================================================================
+实验 B（理论）：什么时候降精度才真的提速？TPOT 下限 ≈ 模型字节 / 带宽
+====================================================================
+（假设显存带宽 ≈ 1.8 TB/s）
+
+      模型 |    精度 |       权重大小 |    TPOT下限(ms) | 说明
+--------------------------------------------------------------------
+    0.6B |  bf16 |      1.2GB |          0.67 | 下限<<实测17ms → launch-bound，降精度不提速
+    0.6B |  int8 |      0.6GB |          0.33 | 下限<<实测17ms → launch-bound，降精度不提速
+    0.6B |  int4 |      0.3GB |          0.17 | 下限<<实测17ms → launch-bound，降精度不提速
+     70B |  bf16 |    140.0GB |         77.78 | 下限就是几十ms量级 → bandwidth-bound，降精度≈线性提速
+     70B |  int8 |     70.0GB |         38.89 | 下限就是几十ms量级 → bandwidth-bound，降精度≈线性提速
+     70B |  int4 |     35.0GB |         19.44 | 下限就是几十ms量级 → bandwidth-bound，降精度≈线性提速
+
+KV cache 每 token（Qwen3-0.6B，2×28×8×128）在不同精度：
+       bf16: 112 KiB/token
+   fp8/int8: 56 KiB/token
+
+要点：
+  - 量化【权重】→ 省权重显存 + 给'大模型'的 decode 提速（bandwidth-bound 时按字节比线性）；
+  - 量化【KV cache】→ 直接砍第 2 章公式里的'每元素字节'→ 同显存塞更多并发 / 更长上下文；
+  - 量化【激活】(W8A8) → 用 int8 Tensor Core，连 compute-bound 的 prefill 也能提速。
+```
+<!-- OUTPUT:exercises/01-inference/logs/06_quantization.log END -->
+
 ---
 
 [^quant]: Quantization（量化）：用更少比特表示权重/激活/KV 以省显存、提速。详见[术语表](../../glossary.md#quantization)。
