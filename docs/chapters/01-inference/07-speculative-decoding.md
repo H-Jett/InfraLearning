@@ -112,7 +112,7 @@ decode 就快了——而目标前向本来就是 memory-bound，多验几个几
 
 ## 7.10 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/07_speculative_decoding.py`。
+源码：`exercises/01-inference/07_speculative_decoding.py`。
 
 <!-- CODE:exercises/01-inference/07_speculative_decoding.py START -->
 ```python
@@ -205,9 +205,9 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/07_speculative_decoding.py END -->
 
-**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+**运行输出：**
 
-<!-- OUTPUT:exercises/01-inference/logs/07_speculative_decoding.log START -->
+<!-- OUTPUT:exercises/01-inference/outputs/07_speculative_decoding.txt START -->
 ```text
 ================================================================
 实验 A（真机）：目标模型一次前向处理 K 个 token 的耗时
@@ -244,7 +244,7 @@ if __name__ == "__main__":
   - 注意：高 batch 时目标模型已 compute-bound，'免费验证'不再免费，投机解码收益变小
     （所以它主要用在低延迟、低并发场景）。
 ```
-<!-- OUTPUT:exercises/01-inference/logs/07_speculative_decoding.log END -->
+<!-- OUTPUT:exercises/01-inference/outputs/07_speculative_decoding.txt END -->
 
 ---
 

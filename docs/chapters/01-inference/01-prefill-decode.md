@@ -185,8 +185,7 @@ flowchart LR
 
 ## 1.8 附录：本章练习代码
 
-下面是练习脚本的完整内容（由 `scripts/sync_code.py` 从源码自动同步，勿手改）。
-源码文件：`exercises/01-inference/01_prefill_vs_decode.py`。
+源码：`exercises/01-inference/01_prefill_vs_decode.py`。
 
 <!-- CODE:exercises/01-inference/01_prefill_vs_decode.py START -->
 ```python
@@ -331,9 +330,9 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/01_prefill_vs_decode.py END -->
 
-**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联；数字随机器会有波动）：
+**运行输出：**
 
-<!-- OUTPUT:exercises/01-inference/logs/01_prefill_vs_decode.log START -->
+<!-- OUTPUT:exercises/01-inference/outputs/01_prefill_vs_decode.txt START -->
 ```text
 加载模型: /volume/data/models/Qwen3-0.6B
 模型参数量: 596M
@@ -366,4 +365,4 @@ TPOT（每 token 解码耗时, 50 步均值）: 17.62 ms
 无 KV cache 生成 20 token: 613.7 ms
 加速比: 1.8x
 ```
-<!-- OUTPUT:exercises/01-inference/logs/01_prefill_vs_decode.log END -->
+<!-- OUTPUT:exercises/01-inference/outputs/01_prefill_vs_decode.txt END -->

@@ -134,7 +134,7 @@ Qwen3-0.6B 的关键配置：
 
 ## 2.10 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/02_kv_cache_memory.py`。
+源码：`exercises/01-inference/02_kv_cache_memory.py`。
 
 <!-- CODE:exercises/01-inference/02_kv_cache_memory.py START -->
 ```python
@@ -258,9 +258,9 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/02_kv_cache_memory.py END -->
 
-**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+**运行输出：**
 
-<!-- OUTPUT:exercises/01-inference/logs/02_kv_cache_memory.log START -->
+<!-- OUTPUT:exercises/01-inference/outputs/02_kv_cache_memory.txt START -->
 ```text
 ================================================================
 Qwen3-0.6B 关键 config
@@ -303,7 +303,7 @@ KV cache（若 MHA, 16 KV 头）  = 8.75 GiB   → GQA 省了 2.0x
 结论：满上下文时单条序列的 KV cache（4.38 GiB）已 3.9× 于模型权重本身！
 这就是为什么长上下文 / 高并发下，KV cache 是头号显存杀手。
 ```
-<!-- OUTPUT:exercises/01-inference/logs/02_kv_cache_memory.log END -->
+<!-- OUTPUT:exercises/01-inference/outputs/02_kv_cache_memory.txt END -->
 
 ---
 

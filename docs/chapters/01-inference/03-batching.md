@@ -133,7 +133,7 @@ continuous batching 让序列**不断进进出出、每条长度还都不一样*
 
 ## 3.9 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/03_batching_throughput.py`。
+源码：`exercises/01-inference/03_batching_throughput.py`。
 
 <!-- CODE:exercises/01-inference/03_batching_throughput.py START -->
 ```python
@@ -242,9 +242,9 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/03_batching_throughput.py END -->
 
-**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+**运行输出：**
 
-<!-- OUTPUT:exercises/01-inference/logs/03_batching_throughput.log START -->
+<!-- OUTPUT:exercises/01-inference/outputs/03_batching_throughput.txt START -->
 ```text
 ======================================================================
 实验 A：不同 batch size 下的吞吐与每步延迟（各生成 64 个 token）
@@ -275,7 +275,7 @@ static batching 计算的 token-步 = 32 × 255 = 8160
 continuous batching：完成即退出、空位即补新请求，基本只算 4110 个有用 token-步
   → 同样算力下，continuous batching 的有效吞吐约为 static 的 2.0x
 ```
-<!-- OUTPUT:exercises/01-inference/logs/03_batching_throughput.log END -->
+<!-- OUTPUT:exercises/01-inference/outputs/03_batching_throughput.txt END -->
 
 ---
 

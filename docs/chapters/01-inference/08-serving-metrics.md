@@ -111,7 +111,7 @@
 
 ## 8.10 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/08_serving_metrics.py`。
+源码：`exercises/01-inference/08_serving_metrics.py`。
 
 <!-- CODE:exercises/01-inference/08_serving_metrics.py START -->
 ```python
@@ -200,9 +200,9 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/08_serving_metrics.py END -->
 
-**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+**运行输出：**
 
-<!-- OUTPUT:exercises/01-inference/logs/08_serving_metrics.log START -->
+<!-- OUTPUT:exercises/01-inference/outputs/08_serving_metrics.txt START -->
 ```text
 SLO：TPOT ≤ 25.0 ms
 
@@ -221,7 +221,7 @@ SLO：TPOT ≤ 25.0 ms
 但 TPOT 越过 SLO，那些请求'超时'不算有效服务，goodput 掉回 0。
 要点：调服务不是最大化吞吐，而是【在满足 SLO 的前提下】最大化 goodput。
 ```
-<!-- OUTPUT:exercises/01-inference/logs/08_serving_metrics.log END -->
+<!-- OUTPUT:exercises/01-inference/outputs/08_serving_metrics.txt END -->
 
 ---
 

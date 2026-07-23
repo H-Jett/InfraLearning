@@ -142,7 +142,7 @@ graph TD
 
 ## 10.9 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/02-gpu-kernels/10_gpu_arch_roofline.py`。
+源码：`exercises/02-gpu-kernels/10_gpu_arch_roofline.py`。
 
 <!-- CODE:exercises/02-gpu-kernels/10_gpu_arch_roofline.py START -->
 ```python
@@ -245,9 +245,9 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/02-gpu-kernels/10_gpu_arch_roofline.py END -->
 
-**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+**运行输出：**
 
-<!-- OUTPUT:exercises/02-gpu-kernels/logs/10_gpu_arch_roofline.log START -->
+<!-- OUTPUT:exercises/02-gpu-kernels/outputs/10_gpu_arch_roofline.txt START -->
 ```text
 ============================================================
 A) GPU 硬件参数
@@ -277,7 +277,7 @@ Roofline 拐点（临界算术强度）
 → 算术强度 > 148：compute-bound（如大矩阵乘 prefill）
 这就是第 1 章 memory/compute-bound 判据的定量版本。
 ```
-<!-- OUTPUT:exercises/02-gpu-kernels/logs/10_gpu_arch_roofline.log END -->
+<!-- OUTPUT:exercises/02-gpu-kernels/outputs/10_gpu_arch_roofline.txt END -->
 
 ---
 

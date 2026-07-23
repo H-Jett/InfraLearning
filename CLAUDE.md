@@ -67,17 +67,16 @@ mkdocs.yml                  # 站点配置
 <!-- CODE:exercises/PART/NN_name.py END -->
 ```
 
-**运行日志（必做）**：每个练习都要**真机跑一遍并把输出存下来、在章节里展示**。由
-`scripts/run_exercises.py` 跑 `exercises/*/NN_*.py`、把 stdout 存成 `exercises/PART/logs/NN_name.log`
-（日志唯一真源）；章节代码附录之后用 OUTPUT 标记内联该日志（```text 围栏）：
+**运行输出（必做）**：每个练习都要**真机跑一遍并把输出存下来、在章节里展示**。由
+`scripts/run_exercises.py` 跑 `exercises/*/NN_*.py`、把 stdout 存成 `exercises/PART/outputs/NN_name.txt`（代码输出，唯一真源）；章节代码附录之后用 OUTPUT 标记内联该日志（```text 围栏）：
 ```
-<!-- OUTPUT:exercises/PART/logs/NN_name.log START -->
+<!-- OUTPUT:exercises/PART/outputs/NN_name.txt START -->
 ​```text
 （由 scripts/sync_code.py 自动填入，勿手改）
 ​```
-<!-- OUTPUT:exercises/PART/logs/NN_name.log END -->
+<!-- OUTPUT:exercises/PART/outputs/NN_name.txt END -->
 ```
-日志随机器有波动，属正常；改了练习代码后重跑 `run_exercises.py` 刷新日志、再 `sync_code.py` 同步。
+输出随机器有波动属正常；改了练习后重跑 `run_exercises.py` 刷新输出、再 `sync_code.py` 同步。
 
 **术语表**：新术语加到 `glossary.md` 对应主题下，前置 `<a id="slug"></a>`。
 
@@ -106,8 +105,8 @@ mkdocs.yml                  # 站点配置
 ## 8. 构建与校验（提交前必做）
 
 ```bash
-python scripts/run_exercises.py        # 跑所有练习，捕获输出到 exercises/*/logs/（改了练习后重跑；可传编号只跑部分）
-python scripts/sync_code.py            # 把 .py 源码 + .log 日志内联进章节
+python scripts/run_exercises.py        # 跑所有练习，捕获输出到 exercises/*/outputs/（改了练习后重跑；可传编号只跑部分）
+python scripts/sync_code.py            # 把 .py 源码 + .txt 运行输出内联进章节
 python scripts/sync_code.py --check    # 校验已同步（不一致退出码 1）
 mkdocs build --strict                  # 坏链接/警告即失败（CI 也跑这条）
 ```

@@ -99,7 +99,7 @@ graph TD
 
 ## 5.9 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/05_prefix_caching.py`。
+源码：`exercises/01-inference/05_prefix_caching.py`。
 
 <!-- CODE:exercises/01-inference/05_prefix_caching.py START -->
 ```python
@@ -184,9 +184,9 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/05_prefix_caching.py END -->
 
-**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+**运行输出：**
 
-<!-- OUTPUT:exercises/01-inference/logs/05_prefix_caching.log START -->
+<!-- OUTPUT:exercises/01-inference/outputs/05_prefix_caching.txt START -->
 ```text
 每个请求各自的 query 长度 = 16 token
 
@@ -200,7 +200,7 @@ if __name__ == "__main__":
 结论：共享前缀越长，前缀复用省得越多——因为朴素每次都在重算这段前缀的 prefill，
       而前缀复用把它摊成'只算一次'。多轮对话、长 system prompt、few-shot 场景收益巨大。
 ```
-<!-- OUTPUT:exercises/01-inference/logs/05_prefix_caching.log END -->
+<!-- OUTPUT:exercises/01-inference/outputs/05_prefix_caching.txt END -->
 
 ---
 

@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 """
-运行每个练习脚本，把它的 stdout 存成日志，作为章节里"运行输出"的唯一真源。
+运行每个练习脚本，把它的 stdout 存成输出文件，作为章节里"运行输出"的唯一真源。
 
   - 扫描 exercises/*/NN_name.py（两位数字前缀的练习，不含 plot_*）；
   - 逐个用 `python` 跑（CUDA_VISIBLE_DEVICES=0），捕获 stdout；
-  - 存到 exercises/PART/logs/NN_name.log；
+  - 存到 exercises/PART/outputs/NN_name.txt；
   - 失败时把 stderr 末尾也追加进日志，方便排查。
 
 日志更新是**主动**行为：改了练习代码后手动跑一次本脚本刷新日志，再 sync 到章节。
@@ -38,9 +38,9 @@ def main():
         num = re.match(r"(\d\d)_", os.path.basename(py)).group(1)
         if only and num not in only:
             continue
-        logdir = os.path.join(os.path.dirname(py), "logs")
+        logdir = os.path.join(os.path.dirname(py), "outputs")
         os.makedirs(logdir, exist_ok=True)
-        log = os.path.join(logdir, os.path.basename(py).replace(".py", ".log"))
+        log = os.path.join(logdir, os.path.basename(py).replace(".py", ".txt"))
         rel = os.path.relpath(py, REPO)
         print(f"[跑] {rel} ...", flush=True)
         try:

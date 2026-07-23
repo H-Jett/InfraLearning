@@ -119,7 +119,7 @@ fp32 vs bf16，测权重显存和 decode 每步耗时（Qwen3-0.6B，batch=1）�
 
 ## 6.11 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/06_quantization.py`。
+源码：`exercises/01-inference/06_quantization.py`。
 
 <!-- CODE:exercises/01-inference/06_quantization.py START -->
 ```python
@@ -228,9 +228,9 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/06_quantization.py END -->
 
-**运行输出**（真机跑出，由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+**运行输出：**
 
-<!-- OUTPUT:exercises/01-inference/logs/06_quantization.log START -->
+<!-- OUTPUT:exercises/01-inference/outputs/06_quantization.txt START -->
 ```text
 ====================================================================
 实验 A（真机）：fp32 vs bf16 —— 显存减半，但速度几乎不变（为什么？）
@@ -268,7 +268,7 @@ KV cache 每 token（Qwen3-0.6B，2×28×8×128）在不同精度：
   - 量化【KV cache】→ 直接砍第 2 章公式里的'每元素字节'→ 同显存塞更多并发 / 更长上下文；
   - 量化【激活】(W8A8) → 用 int8 Tensor Core，连 compute-bound 的 prefill 也能提速。
 ```
-<!-- OUTPUT:exercises/01-inference/logs/06_quantization.log END -->
+<!-- OUTPUT:exercises/01-inference/outputs/06_quantization.txt END -->
 
 ---
 

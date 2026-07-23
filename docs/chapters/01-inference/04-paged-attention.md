@@ -117,7 +117,7 @@ flowchart LR
 
 ## 4.9 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/04_paged_kv_simulation.py`。
+源码：`exercises/01-inference/04_paged_kv_simulation.py`。
 
 <!-- CODE:exercises/01-inference/04_paged_kv_simulation.py START -->
 ```python
@@ -211,9 +211,9 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/04_paged_kv_simulation.py END -->
 
-**运行输出**（由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+**运行输出：**
 
-<!-- OUTPUT:exercises/01-inference/logs/04_paged_kv_simulation.log START -->
+<!-- OUTPUT:exercises/01-inference/outputs/04_paged_kv_simulation.txt START -->
 ```text
 每 token KV = 112.00 KiB，KV 显存预算 = 8.00 GiB，模型最大上下文 = 40960，block = 16 tokens
 
@@ -244,7 +244,7 @@ if __name__ == "__main__":
       分页只按实际长度一块块给，利用率逼近 100%，同样显存能多塞几十倍并发。
       这就是 vLLM 用 PagedAttention 把吞吐拉高的根本原因。
 ```
-<!-- OUTPUT:exercises/01-inference/logs/04_paged_kv_simulation.log END -->
+<!-- OUTPUT:exercises/01-inference/outputs/04_paged_kv_simulation.txt END -->
 
 ---
 

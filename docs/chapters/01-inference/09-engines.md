@@ -101,7 +101,7 @@ flowchart TD
 
 ## 9.8 附录：本章练习代码
 
-由 `scripts/sync_code.py` 从源码自动同步。源码：`exercises/01-inference/09_inference_advisor.py`。
+源码：`exercises/01-inference/09_inference_advisor.py`。
 
 <!-- CODE:exercises/01-inference/09_inference_advisor.py START -->
 ```python
@@ -218,9 +218,9 @@ if __name__ == "__main__":
 ```
 <!-- CODE:exercises/01-inference/09_inference_advisor.py END -->
 
-**运行输出**（由 `run_exercises.py` 捕获、`sync_code.py` 内联）：
+**运行输出：**
 
-<!-- OUTPUT:exercises/01-inference/logs/09_inference_advisor.log START -->
+<!-- OUTPUT:exercises/01-inference/outputs/09_inference_advisor.txt START -->
 ```text
 ==================================================================
 模型 Qwen-like-70B（70B）  场景「单用户客服(长system prompt)」
@@ -270,4 +270,4 @@ decode 大致处于：compute-bound（算力已被喂饱）
   4. weight-only 量化 (W4A16)
      → 大模型 decode 是 bandwidth-bound，压权重≈按字节比提速（第6章）
 ```
-<!-- OUTPUT:exercises/01-inference/logs/09_inference_advisor.log END -->
+<!-- OUTPUT:exercises/01-inference/outputs/09_inference_advisor.txt END -->
