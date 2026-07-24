@@ -13,9 +13,6 @@
 用法：
   python scripts/run_exercises.py                # 跑全部
   python scripts/run_exercises.py 03 07          # 只跑编号 03、07
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/scripts/run_exercises.py
 """
 
 import os

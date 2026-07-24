@@ -25,9 +25,6 @@
   然后：
       python scripts/sync_code.py          # 把 .py 内容写进所有 .md 标记区
       python scripts/sync_code.py --check   # 只校验是否已同步；不一致则退出码 1（给 CI 用）
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/scripts/sync_code.py
 """
 
 import argparse

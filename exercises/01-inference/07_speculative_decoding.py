@@ -12,17 +12,15 @@
 
 实验 B（模拟）：给定接受率 α 和草稿长度 K，算"每次目标前向平均吐出多少 token"，
     从而估算理想加速比。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/07_speculative_decoding.py
 """
 
 import time
 import statistics
+import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_PATH = "/volume/data/models/Qwen3-0.6B"
+MODEL_PATH = os.environ.get("INFRA_MODEL", "Qwen/Qwen3-0.6B")
 DEVICE = "cuda:0"
 
 

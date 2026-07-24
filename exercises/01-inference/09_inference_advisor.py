@@ -14,9 +14,6 @@
   第5章 前缀复用（长共享前缀）
   第6章 量化（省显存/大模型decode提速）
   第7章 投机解码（低并发有效、高并发失效）
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/09_inference_advisor.py
 """
 
 from dataclasses import dataclass

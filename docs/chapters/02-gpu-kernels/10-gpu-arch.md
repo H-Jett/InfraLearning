@@ -157,9 +157,6 @@ graph TD
      实测 TFLOPS —— 亲眼看见 Tensor Core 比普通 CUDA core 快多少。
   C) 显存带宽：大张量逐元素相加，实测 GB/s。
   由 B、C 算出 roofline 拐点（临界算术强度 = 峰值算力 / 带宽），呼应第 1 章 memory/compute-bound。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/02-gpu-kernels/10_gpu_arch_roofline.py
 """
 
 import time

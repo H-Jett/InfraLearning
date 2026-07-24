@@ -136,17 +136,15 @@ fp32 vs bf16，测权重显存和 decode 每步耗时（Qwen3-0.6B，batch=1）�
 实验 B（理论）：用第 1 章的公式 "TPOT 下限 ≈ 模型字节 / 显存带宽" 说明——
     只有当 decode 真正 bandwidth-bound（大模型）时，降精度才线性提速；
     并列出权重 / KV cache 在各精度下的显存。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/06_quantization.py
 """
 
 import time
 import statistics
+import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_PATH = "/volume/data/models/Qwen3-0.6B"
+MODEL_PATH = os.environ.get("INFRA_MODEL", "Qwen/Qwen3-0.6B")
 DEVICE = "cuda:0"
 BW = 1.8e12  # 假设显存带宽 ~1.8 TB/s（数量级示意）
 

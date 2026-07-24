@@ -116,17 +116,15 @@ graph TD
     直接在缓存的前缀 KV 上接着算。
 
 我们测每个请求的 TTFT（首 token 延迟 ≈ prefill 时间）在两种方式下的差别。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/05_prefix_caching.py
 """
 
 import time
 import statistics
+import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_PATH = "/volume/data/models/Qwen3-0.6B"
+MODEL_PATH = os.environ.get("INFRA_MODEL", "Qwen/Qwen3-0.6B")
 DEVICE = "cuda:0"
 QUERY_LEN = 16  # 每个请求各自的一小段 query 长度
 

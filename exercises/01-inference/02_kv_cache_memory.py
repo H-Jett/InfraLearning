@@ -11,15 +11,13 @@
   A) 用 Qwen3-0.6B 的真实 config 手算 per-token 和不同长度的 KV cache 大小；
   B) 真机跑一遍，量出 past_key_values 的实际字节数，和公式对比；
   C) 对比 GQA vs 若为 MHA 的差异，以及 KV cache 与模型权重的"交叉点"。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/02_kv_cache_memory.py
 """
 
+import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_PATH = "/volume/data/models/Qwen3-0.6B"
+MODEL_PATH = os.environ.get("INFRA_MODEL", "Qwen/Qwen3-0.6B")
 DEVICE = "cuda:0"
 
 

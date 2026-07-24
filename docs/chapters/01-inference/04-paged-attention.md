@@ -134,9 +134,6 @@ flowchart LR
      （不管它实际会生成多长）→ 巨大的内部浪费。
   2) 分页 (PagedAttention)：把 KV cache 切成固定大小的 block，按需一块块分配
      → 只在每条序列的"最后一块"有一点内部碎片，利用率极高。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/04_paged_kv_simulation.py
 """
 
 import math

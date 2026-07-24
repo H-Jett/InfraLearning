@@ -202,16 +202,14 @@ flowchart LR
      被固定开销主导（近似平线），只有 token 足够多时才随长度明显上升。
   2) Decode 每个 token 的时间基本恒定（每步只算 1 个 token），单个 token 却可能比
      prefill 几千个 token 还慢 —— 因为 decode 是访存受限的（第 1 章正文详解）。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/01_prefill_vs_decode.py
 """
 
 import time
+import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_PATH = "/volume/data/models/Qwen3-0.6B"
+MODEL_PATH = os.environ.get("INFRA_MODEL", "Qwen/Qwen3-0.6B")
 DEVICE = "cuda:0"
 
 
@@ -235,7 +233,7 @@ def timeit(fn, warmup=1, repeat=3):
 
 
 def main():
-    print(f"加载模型: {MODEL_PATH}")
+    print(f"加载模型: {os.path.basename(MODEL_PATH.rstrip(chr(47)))}")
     tok = AutoTokenizer.from_pretrained(MODEL_PATH)
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_PATH, torch_dtype=torch.float16
@@ -334,7 +332,7 @@ if __name__ == "__main__":
 
 <!-- OUTPUT:exercises/01-inference/outputs/01_prefill_vs_decode.txt START -->
 ```text
-加载模型: /volume/data/models/Qwen3-0.6B
+加载模型: Qwen3-0.6B
 模型参数量: 596M
 
 ============================================================
@@ -342,27 +340,27 @@ if __name__ == "__main__":
 ============================================================
   prompt_len |   prefill_ms |   ms/token
 ----------------------------------------
-          16 |        17.91 |      1.120
-          64 |        18.32 |      0.286
-         256 |        18.70 |      0.073
-        1024 |        19.50 |      0.019
-        4096 |        54.00 |      0.013
+          16 |        18.41 |      1.151
+          64 |        18.54 |      0.290
+         256 |        18.96 |      0.074
+        1024 |        19.55 |      0.019
+        4096 |        54.01 |      0.013
 
 ============================================================
 实验 B：Decode（借助 KV cache，每步只喂 1 个 token）每 token 耗时
 ============================================================
 prompt token 数: 19
-TTFT（首 token 延迟, 含 prefill）: 21.17 ms
-TPOT（每 token 解码耗时, 50 步均值）: 17.62 ms
-解码吞吐: 56.8 tokens/s
+TTFT（首 token 延迟, 含 prefill）: 21.42 ms
+TPOT（每 token 解码耗时, 50 步均值）: 17.68 ms
+解码吞吐: 56.6 tokens/s
 
 生成内容: '<think>\n嗯，用户让我用一句话解释什么是大语言模型的推理。首先，我需要明确大语言模型是什么。大语言模型，比如GPT、BERT这些，它们的训练数据量很大，能够处理大量文本信息。然后'
 
 ============================================================
 实验 C：关掉 KV cache 会怎样？（每步都重算整段历史）
 ============================================================
-有 KV cache 生成 20 token: 343.4 ms
-无 KV cache 生成 20 token: 613.7 ms
-加速比: 1.8x
+有 KV cache 生成 20 token: 338.9 ms
+无 KV cache 生成 20 token: 574.0 ms
+加速比: 1.7x
 ```
 <!-- OUTPUT:exercises/01-inference/outputs/01_prefill_vs_decode.txt END -->

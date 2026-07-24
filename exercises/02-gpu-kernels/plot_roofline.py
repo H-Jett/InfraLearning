@@ -9,9 +9,6 @@
   - 配色：Okabe-Ito 色盲安全调色板；
   - 细线 + 淡网格 + 直接标注，白底（明暗模式都可读）；
   - 图内文字用英文，避免 matplotlib 缺中文字体显示方框。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/02-gpu-kernels/plot_roofline.py
 """
 
 import os

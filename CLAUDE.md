@@ -58,7 +58,9 @@ mkdocs.yml                  # 站点配置
 **答案册 `docs/qa/NN-name-qa.md`**：**只记「问题 + 正确答案」**，不记读者作答。每题前加 `<a id="q1"></a>`
 （q1/q2/q3）。必须加进 `mkdocs.yml` 的「思考题参考答案」nav（否则 `--strict` 报错）。
 
-**练习 `.py`**：可直接运行、有必要日志、docstring 里写绝对路径。章节附录用同步标记包裹：
+**练习 `.py`**：可直接运行、有必要日志。**仓库内一律用相对路径，禁止绝对路径**（会泄漏用户名等个人信息）。
+用到模型时走 `MODEL_PATH = os.environ.get("INFRA_MODEL", "Qwen/Qwen3-0.6B")`（默认从 HF 下载 Qwen3-0.6B，
+本地跑可 `INFRA_MODEL=/你的/模型路径 python ...` 覆盖）。章节附录用同步标记包裹：
 ```
 <!-- CODE:exercises/PART/NN_name.py START -->
 ​```python
@@ -123,5 +125,6 @@ mkdocs build --strict                  # 坏链接/警告即失败（CI 也跑�
 
 - **不主动写报告文件**（`*.md` 总结、`report_*.json` 等）；结论直接说，除非明确要求导出。
 - 需要时间戳用**北京时间**：`TZ='Asia/Shanghai' date '+%Y-%m-%d %H:%M'`。
-- 写/改文件时**贴出绝对路径**。
-- 大的中间产物放 `/volume/data/hjiang02/` 下，别写爆 `/tmp`。
+- **仓库内所有文件禁止出现绝对路径**（尤其带用户名的，如 `/volume/data/<user>/…`）——公开仓库会泄漏个人信息；
+  只用相对路径 / 环境变量。聊天里为方便定位可给绝对路径，但**绝不提交进仓库**。
+- 大的中间产物放持久大盘、别写爆 `/tmp`（具体机器路径不写进仓库）。

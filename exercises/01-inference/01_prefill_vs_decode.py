@@ -11,16 +11,14 @@
      被固定开销主导（近似平线），只有 token 足够多时才随长度明显上升。
   2) Decode 每个 token 的时间基本恒定（每步只算 1 个 token），单个 token 却可能比
      prefill 几千个 token 还慢 —— 因为 decode 是访存受限的（第 1 章正文详解）。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/01_prefill_vs_decode.py
 """
 
 import time
+import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_PATH = "/volume/data/models/Qwen3-0.6B"
+MODEL_PATH = os.environ.get("INFRA_MODEL", "Qwen/Qwen3-0.6B")
 DEVICE = "cuda:0"
 
 
@@ -44,7 +42,7 @@ def timeit(fn, warmup=1, repeat=3):
 
 
 def main():
-    print(f"加载模型: {MODEL_PATH}")
+    print(f"加载模型: {os.path.basename(MODEL_PATH.rstrip(chr(47)))}")
     tok = AutoTokenizer.from_pretrained(MODEL_PATH)
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_PATH, torch_dtype=torch.float16

@@ -11,17 +11,15 @@
   - goodput (有效吞吐)：只有满足 SLO 的吞吐才算数——越过拐点后吞吐虽高但违反 SLO，不算 goodput。
 
 实验：扫不同并发 batch，测 TTFT / TPOT / 吞吐，按 SLO 算 goodput，找到"最大 goodput"的甜点。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/08_serving_metrics.py
 """
 
 import time
 import statistics
+import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_PATH = "/volume/data/models/Qwen3-0.6B"
+MODEL_PATH = os.environ.get("INFRA_MODEL", "Qwen/Qwen3-0.6B")
 DEVICE = "cuda:0"
 GEN = 64
 SLO_TPOT_MS = 25.0  # 服务级目标：每 token 延迟不超过 25ms

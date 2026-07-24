@@ -6,9 +6,6 @@
 
 规范：Okabe-Ito 色盲安全配色、白底、英文标签（避免 matplotlib 缺中文字体出方框）、
 细线 + 淡网格、直接标注。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/plot_figures.py
 """
 
 import os

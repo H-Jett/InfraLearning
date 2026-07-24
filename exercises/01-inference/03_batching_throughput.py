@@ -11,17 +11,15 @@
 
 实验 B（模拟）：说明 static batching 的"长尾浪费"——一批里生成长度不齐时，
     短序列早早结束却要陪跑到最长的那条，GPU 空转；continuous batching 能把这部分收回来。
-
-绝对路径：
-  /volume/data/hjiang02/workspace/infra-learning/exercises/01-inference/03_batching_throughput.py
 """
 
 import time
 import statistics
+import os
 import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
-MODEL_PATH = "/volume/data/models/Qwen3-0.6B"
+MODEL_PATH = os.environ.get("INFRA_MODEL", "Qwen/Qwen3-0.6B")
 DEVICE = "cuda:0"
 GEN_TOKENS = 64
 
