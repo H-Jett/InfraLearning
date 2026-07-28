@@ -13,8 +13,8 @@
 | 章 | 主题 | 一句话 |
 |----|------|--------|
 | 1 | [图像如何变成 token](01-image-to-tokens.md) | patchify = 图像的 tokenizer；token 数由分辨率决定 |
-| 2 | ViT：把 Transformer 用到图像上 | 🔜 patch 序列进 Transformer 之后发生了什么 |
-| 3 | CLIP：对比学习怎么把图文对齐 | ⬜ 图和文为什么能落到同一个空间 |
+| 2 | [ViT：把 Transformer 用到图像上](02-vit.md) | CLS token、位置编码、注意力距离的真实规律 |
+| 3 | CLIP：对比学习怎么把图文对齐 | 🔜 图和文为什么能落到同一个空间 |
 | 4 | 视觉编码器家族 | ⬜ CLIP / SigLIP / DINOv2：VLM 该选谁 |
 | 5 | 预处理与分辨率 | ⬜ resize/crop/归一化如何影响信息量与成本 |
 | 🛠 | [实战项目 1 · 图像 token 预算计算器](P1-token-budget.md) | 这部分的收尾作业：自己写代码，跑自动评分（只依赖第 1 章，想早动手可以现在就做） |

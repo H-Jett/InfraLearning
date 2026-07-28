@@ -21,6 +21,25 @@
 **ViT (Vision Transformer)** — 把 Transformer 直接作用在 patch 序列上的视觉模型
 （Dosovitskiy et al., 2020）。内部是**双向注意力**，没有因果掩码。→ 第 1、2 章
 
+<a id="cls-token"></a>
+**CLS token（分类 token）** — 拼在 patch 序列最前面的一个**可学习向量**，不来自任何像素；
+跑完 encoder 后取它的输出当整图表示。本质是"可学习 query 的加权池化"。
+注意 **VLM 通常不用它**（要的是全部 patch token）。→ 第 2 章
+
+<a id="pos-embed"></a>
+**位置编码（Position Embedding）** — 给每个 token 注入"我在哪"的向量。ViT 用的是**一维可学习表**
+（`[1+N, d]`），**按数量**定义，所以换输入分辨率必须插值、且会让特征漂移。
+可外推的替代方案见 2D RoPE / M-RoPE。→ 第 2、8、9 章
+
+<a id="attn-distance"></a>
+**平均注意力距离（Mean Attention Distance）** — 用注意力权重加权 query 到各 key 的空间距离，
+衡量某个头"看得多远"。实测规律是**越深，局部的头越少**（而不是"底层一定局部"）；
+跨模型比较前要按网格尺度归一化。→ 第 2 章
+
+<a id="attn-pooling"></a>
+**注意力池化（Attention Pooling）** — 用一个可学习 query 对所有 patch token 做一次
+cross-attention 得到整图表示（SigLIP、CoCa 用），可看作把 CLS 的思路独立出来。→ 第 2、4 章
+
 <a id="token-merge"></a>
 **Token Merge（token 合并）** — 把相邻的若干视觉 token 合并成一个，直接减少送入 LLM 的 token 数。
 如 Qwen2-VL 系列的 2×2 merge，token 数降到 1/4。→ 第 1、8、11 章

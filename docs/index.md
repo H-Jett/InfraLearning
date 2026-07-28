@@ -38,7 +38,9 @@
 **当前进度（第一部分）**：
 
 - ✅ 第 1 章 [图像如何变成 token](chapters/01-vision-basics/01-image-to-tokens.md)
-- 🔜 第 2 章 ViT：把 Transformer 用到图像上
+- ✅ 第 2 章 [ViT：把 Transformer 用到图像上](chapters/01-vision-basics/02-vit.md)
+- 🛠 [实战项目 1 · 图像 token 预算计算器](chapters/01-vision-basics/P1-token-budget.md)（可做）
+- 🔜 第 3 章 CLIP：对比学习怎么把图文对齐
 
 ## 学习环境
 
