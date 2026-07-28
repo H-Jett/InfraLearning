@@ -286,3 +286,18 @@ Ampere 起 Tensor Core 的一种精度：19 位有效，介于 fp32 与 bf16 之
 ### Brent 定理（work-span）
 用 p 个处理器，运行时间 max(W/p, D) ≤ T_p ≤ W/p + D。W=总运算量、D=最长依赖链（深度）。
 推论：再多核也快不过 D，所以并行算法要压低 depth（如树状归约把 depth 从 N 降到 log N）。
+
+<a id="coalescing"></a>
+### Memory Coalescing（访存合并）
+同一 warp 的 32 个线程若访问连续内存地址，硬件把它们合并成一次（或很少几次）大内存事务，带宽拉满；
+访问分散则退化成多次小事务，带宽暴跌。写 memory-bound kernel 的头号规则：让相邻线程访问相邻内存。
+
+<a id="shared-memory"></a>
+### Shared Memory（共享内存）
+每个 block 独享的一块片上高速内存（比 HBM 快几十倍），block 内线程共享。经典用法是 tiling：
+把数据块载入其中反复复用，减少回 HBM 的访问。
+
+<a id="tiling"></a>
+### Tiling（分块）
+把一小块数据从 HBM 搬进 shared memory 一次，让线程在片上反复复用，从而减少 HBM 访问、
+提高算术强度——把算子从 memory-bound 往 compute-bound 推。矩阵乘优化的核心手法。
