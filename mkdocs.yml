@@ -1,5 +1,8 @@
 site_name: 算法工程师的 Infra 入门
 site_description: 一本边学边记、力求正确的 infra 入门书
+site_url: https://H-Jett.github.io/InfraLearning/
+repo_url: https://github.com/H-Jett/InfraLearning
+repo_name: H-Jett/InfraLearning
 theme:
   name: material
   language: zh

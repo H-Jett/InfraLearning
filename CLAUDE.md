@@ -120,6 +120,8 @@ mkdocs build --strict                  # 坏链接/警告即失败（CI 也跑�
 - 作者身份用仓库自己的 `git config user.name/email`（本仓库为 `H-Jett`）。
 - 提交信息中文、说清做了什么。
 - push 到 `main` 触发 Actions 自动构建并发布到 GitHub Pages。
+- `mkdocs.yml` 配 `site_url` + `repo_url` + `repo_name`（网页右上角显示 GitHub 仓库链接）；
+  `README.md` 顶部放**在线阅读**链接（GitHub Pages 站点）——网页与仓库互相可达。
 
 ## 10. 通用约束（来自用户全局规范）
 

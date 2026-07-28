@@ -1,5 +1,7 @@
 # 算法工程师的 Infra 入门
 
+📖 **在线阅读（GitHub Pages）**：<https://H-Jett.github.io/InfraLearning/>
+
 一本"边学边记"的 infra 入门书。内容以标准 Markdown 编写，**三种方式都能看**：
 
 1. **直接在 GitHub 上浏览** [`docs/`](docs/) 里的 `.md`（脚注、代码、术语表跳转都可用）；
