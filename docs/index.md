@@ -39,8 +39,9 @@
 
 - ✅ 第 1 章 [图像如何变成 token](chapters/01-vision-basics/01-image-to-tokens.md)
 - ✅ 第 2 章 [ViT：把 Transformer 用到图像上](chapters/01-vision-basics/02-vit.md)
+- ✅ 第 3 章 [CLIP：对比学习怎么把图文对齐](chapters/01-vision-basics/03-clip.md)
 - 🛠 [实战项目 1 · 图像 token 预算计算器](chapters/01-vision-basics/P1-token-budget.md)（可做）
-- 🔜 第 3 章 CLIP：对比学习怎么把图文对齐
+- 🔜 第 4 章 视觉编码器家族（CLIP / SigLIP / DINOv2）
 
 ## 学习环境
 

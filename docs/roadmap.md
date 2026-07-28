@@ -21,8 +21,8 @@ VLM 架构与训练范式、多模态特有的工程问题。
 |----|------|----------------|------|
 | 1 | 图像如何变成 token | patchify = 图像的 tokenizer；视觉 token 数由像素决定 | ✅ |
 | 2 | ViT：把 Transformer 用到图像上 | CLS token / 位置编码 / 注意力距离实测，与 GPT 的异同 | ✅ |
-| 3 | CLIP：对比学习怎么把图文对齐 | InfoNCE、温度系数、zero-shot 分类为什么成立 | 🔜 |
-| 4 | 视觉编码器家族 | CLIP / SigLIP / DINOv2 / EVA：VLM 该选谁、为什么 | ⬜ |
+| 3 | CLIP：对比学习怎么把图文对齐 | InfoNCE / 温度 / zero-shot / 词袋式对齐的结构性上限 | ✅ |
+| 4 | 视觉编码器家族 | CLIP / SigLIP / DINOv2 / EVA：VLM 该选谁、为什么 | 🔜 |
 | 5 | 预处理与分辨率 | resize/crop/归一化怎么影响信息量与 token 数 | ⬜ |
 | — | 第一部分小结（速查） | 一页纸复习 | ⬜ |
 | 🛠 | [**实战项目 1 · 图像 token 预算计算器**](chapters/01-vision-basics/P1-token-budget.md) | 自己复现 smart_resize、算清 token 与显存、反向求解 max_pixels（只依赖第 1 章，可提前做） | ✅ 可做 |

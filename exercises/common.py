@@ -36,6 +36,46 @@ def _synthetic(path, size=(960, 686)):
     return img
 
 
+# 多图练习用的一小组图（对比学习、检索类实验需要好几张图）
+# 说明文字是**逐张打开看过**之后写的，不是照 URL 猜的（曾经踩过坑：
+# HF 的 coco_sample.png 其实和 COCO 39769 是同一张两只猫的图，会让实验出现重复行）。
+SAMPLE_SET = [
+    # (文件名, URL, 一句话说明——只用于打印，不喂给模型)
+    ("cat.jpg", SAMPLE_URL, "雪地里的一只兔猫（帕拉斯猫）特写"),
+    ("two_cats.jpg", "http://images.cocodataset.org/val2017/000000039769.jpg",
+     "粉色毯子上躺着两只虎斑猫 + 两个遥控器（COCO val2017 39769）"),
+    ("living_room.jpg", "http://images.cocodataset.org/val2017/000000000139.jpg",
+     "室内客厅：电视、餐桌椅、木地板（COCO val2017 139）"),
+    ("house.jpg",
+     "https://huggingface.co/datasets/hf-internal-testing/fixtures_ade20k/resolve/main/"
+     "ADE_val_00000001.jpg",
+     "室外：石砌老房子、红瓦屋顶、草坪蓝天（ADE20K 验证集）"),
+]
+
+
+def sample_images(verbose=True):
+    """返回 [(名字, PIL.Image, 说明)]：多图实验用。下载失败的条目会用合成图顶上。"""
+    os.makedirs(SAMPLE_DIR, exist_ok=True)
+    out = []
+    for name, url, desc in SAMPLE_SET:
+        path = os.path.join(SAMPLE_DIR, name)
+        if not os.path.exists(path):
+            try:
+                urllib.request.urlretrieve(url, path)
+                if verbose:
+                    print(f"[图片] 下载 {name}（{desc}）")
+            except Exception as e:
+                if verbose:
+                    print(f"[图片] {name} 下载失败（{type(e).__name__}），用合成图代替")
+                _synthetic(path)
+        img = Image.open(path).convert("RGB")
+        out.append((name, img, desc))
+    if verbose:
+        print(f"[图片] 共 {len(out)} 张：" +
+              "、".join(f"{n}({i.size[0]}×{i.size[1]})" for n, i, _ in out))
+    return out
+
+
 def sample_image(verbose=True):
     """返回一张 PIL.Image（RGB）。优先用缓存 → 下载 → 合成图。"""
     os.makedirs(SAMPLE_DIR, exist_ok=True)

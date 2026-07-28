@@ -48,6 +48,35 @@ cross-attention 得到整图表示（SigLIP、CoCa 用），可看作把 CLS 的
 **smart_resize** — Qwen-VL 系列 processor 的预处理策略：保持长宽比，把宽高对齐到
 `patch_size × merge_size`（28）的倍数，并把总像素数约束在 `[min_pixels, max_pixels]` 内。→ 第 1、8 章
 
+## 图文对齐
+
+<a id="clip"></a>
+**CLIP (Contrastive Language-Image Pre-training)** — 用对比学习把图像与文本对齐到同一空间的**双塔**模型
+（Radford et al., 2021）。两塔独立编码，只在最后算点积，因此可离线建索引、但**没有跨模态细粒度交互**。→ 第 3 章
+
+<a id="infonce"></a>
+**InfoNCE** — 对比学习损失：把"找出配对样本"变成 batch 内的 N 选 1 分类，
+**batch 内其他样本即负样本**，所以 batch size = 负样本数。CLIP 用它的对称版（图→文 + 文→图）。→ 第 3 章
+
+<a id="temperature"></a>
+**温度系数 τ（logit_scale）** — 相似度除以 τ 后再 softmax，控制分布锐度：
+τ 越小越尖锐、越放大对难负样本的惩罚。CLIP 把它做成可学习参数，收敛到 **τ≈0.01**（scale=100），
+导致 zero-shot 概率**严重饱和且未经校准**——不能当置信度用。→ 第 3 章
+
+<a id="zero-shot"></a>
+**zero-shot 分类** — 把类别名写成句子编码成文本向量，看图像向量与谁最近；类别集合可现场更换。
+效果依赖 prompt 写法（把输入拉回训练分布），官方用 80 模板集成。→ 第 3 章
+
+<a id="bag-of-words"></a>
+**词袋式对齐（Bag-of-Words Behavior）** — 对比模型只优化整句 ↔ 整图的相似度，
+对词序、数量、属性绑定不敏感的现象（Winoground、ARO 等基准量化了这一点）。
+这是 CLIP 的**结构性**上限，也是 VLM 必须接 LLM 做细粒度推理的原因。→ 第 3、15 章
+
+<a id="penultimate-layer"></a>
+**倒数第二层特征（Penultimate Layer）** — LLaVA 系 VLM 取视觉塔**倒数第二层**的 patch token
+（而非最后一层或投影后的 pooled 向量）：最后一层为对比目标特化、局部细节被压缩。
+实测两层 patch token 平均 cosine 仅 0.62。属工程经验，非定理。→ 第 3、6 章
+
 ## 模型与架构
 
 <a id="vlm"></a>
