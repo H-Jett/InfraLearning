@@ -1,6 +1,6 @@
 # 实战项目 1 · 图像 token 预算计算器
 
-> **前置**：第 1 章[图像如何变成 token](../chapters/01-vision-basics/01-image-to-tokens.md)
+> **前置**：第 1 章[图像如何变成 token](01-image-to-tokens.md)
 > **难度**：★★☆☆☆ · **预计耗时**：1.5~3 小时 · **需要 GPU**：不需要
 
 ## 为什么做这个项目

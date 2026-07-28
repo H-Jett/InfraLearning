@@ -1,8 +1,16 @@
 site_name: 多模态入门：给 LLM 工程师的一本书
 site_description: 从纯文本 LLM 出发、边学边记、力求正确的多模态入门书
+
+# 仓库链接：右上角显示 GitHub 图标 + 每页右上"编辑此页"
+repo_url: https://github.com/H-Jett/MultiModalLearning
+repo_name: H-Jett/MultiModalLearning
+edit_uri: edit/main/docs/
+
 theme:
   name: material
   language: zh
+  icon:
+    repo: fontawesome/brands/github
   palette:
     # 亮色 / 暗色切换
     - media: "(prefers-color-scheme: light)"
@@ -18,6 +26,7 @@ theme:
   features:
     - navigation.indexes    # 允许"章"节点本身是一个页面，补充内容缩进其下
     - navigation.footer     # 页脚上一页/下一页翻页
+    - content.action.edit   # 每页"在 GitHub 上编辑"
     - navigation.top        # 回到顶部
     - toc.follow
     - search.suggest
@@ -54,7 +63,6 @@ nav:
   - 第一部分 · 视觉表征基础:
       - chapters/01-vision-basics/00-intro.md
       - 第 1 章 · 图像如何变成 token: chapters/01-vision-basics/01-image-to-tokens.md
-  - 实战项目:
-      - 项目 1 · 图像 token 预算计算器: projects/P1-token-budget.md
+      - 🛠 实战项目 1 · 图像 token 预算计算器: chapters/01-vision-basics/P1-token-budget.md
   - 思考题参考答案:
       - 第 1 章: qa/01-image-to-tokens-qa.md
