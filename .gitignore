@@ -1,0 +1,16 @@
+# 站点构建产物
+site/
+
+# 示例图片（运行练习时自动下载/生成，不入库：避免体积与版权问题）
+assets/sample/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 编辑器
+.idea/
+.vscode/
+.DS_Store
