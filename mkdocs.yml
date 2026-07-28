@@ -54,5 +54,7 @@ nav:
   - 第一部分 · 视觉表征基础:
       - chapters/01-vision-basics/00-intro.md
       - 第 1 章 · 图像如何变成 token: chapters/01-vision-basics/01-image-to-tokens.md
+  - 实战项目:
+      - 项目 1 · 图像 token 预算计算器: projects/P1-token-budget.md
   - 思考题参考答案:
       - 第 1 章: qa/01-image-to-tokens-qa.md

@@ -129,6 +129,24 @@ VLM 架构与训练范式、多模态特有的工程问题。
 
 ---
 
+## 实战项目（穿插在各部分之间，读者自己动手）
+
+章节练习是"看我跑"，**实战项目是你自己写**：我给题目、骨架和**自动评分脚本**，你实现、跑分、我 review。
+
+| 项目 | 在哪做 | 做什么 | 状态 |
+|------|--------|--------|------|
+| [P1 · 图像 token 预算计算器](projects/P1-token-budget.md) | 学完第 1 章即可 | 复现 `smart_resize`、算 token 与 KV cache、反向求解 `max_pixels` | ✅ 可做 |
+| P2 · 手搓一个 mini-VLM | 第二部分后 | CLIP + 小 LLM + MLP projector 拼出能跑前向的 VLM，输出与 HF 实现对齐 | ⬜ |
+| P3 · 造数据 + 微调 | 第三部分后 | 自建一份小规模多模态 SFT 数据，LoRA 微调，评测 before/after | ⬜ |
+| P4 · 变长 token 的 packing | 第四部分后 | 实现图像 token 的 packing/bucketing，实测 DP 间负载均衡改善 | ⬜ |
+| P5 · VLM 服务压测调优 | 第五部分后 | 起 vLLM 服务，压测 TTFT/吞吐/goodput，调出一套参数 | ⬜ |
+| P6 · 从零实现扩散 | 第六部分后 | 手写 DDPM 训练与采样，在小数据集上训出能看的图 | ⬜ |
+| P7 · 端到端综合 | 第七部分后 | 给自己的 mini-VLM 做评测 + 提速，写成一份技术报告 | ⬜ |
+
+**做法**：题目在 `docs/projects/`，骨架代码在仓库根的 `projects/PN-xxx/`（带 `TODO`），
+`python check.py` 自动打分（对照 transformers 等独立真源，不是对照我的实现）。
+参考实现默认不入库——先自己写。
+
 ## 与《算法工程师的 Infra 入门》的关系
 
 那本书讲**通用**的推理/训练 infra（KV cache、PagedAttention、CUDA、并行）；
