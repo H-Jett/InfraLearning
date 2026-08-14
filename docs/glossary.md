@@ -301,3 +301,14 @@ Ampere 起 Tensor Core 的一种精度：19 位有效，介于 fp32 与 bf16 之
 ### Tiling（分块）
 把一小块数据从 HBM 搬进 shared memory 一次，让线程在片上反复复用，从而减少 HBM 访问、
 提高算术强度——把算子从 memory-bound 往 compute-bound 推。矩阵乘优化的核心手法。
+
+<a id="occupancy"></a>
+### Occupancy（占用率）
+一个 SM 上**活跃 warp 数 / 该 SM 最大可容纳 warp 数**。占用率越高，越有足够多的 warp 供硬件切换、
+掩盖访存延迟；但受每个 block 的寄存器数、shared memory 用量限制。不是越高越好，够用即可。
+
+<a id="profiler"></a>
+### Profiler（性能分析工具）
+测量程序性能的工具。GPU 三层：**torch.profiler**（框架/kernel 级时间，最易用）、
+**Nsight Systems / nsys**（系统时间线与 trace）、**Nsight Compute / ncu**（单 kernel 硬件计数器，
+需性能计数器权限，容器里常报 `ERR_NVGPUCTRPERM`）。

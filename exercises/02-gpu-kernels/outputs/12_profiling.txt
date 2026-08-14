@@ -1,0 +1,10 @@
+用 torch.profiler 抓 8192³ 矩阵乘，最耗时的 GPU kernel：
+
+[fp32]  15.98 ms/call
+       主 kernel: void cutlass::Kernel2<cutlass_80_simt_sgemm_256x128_8x4_nn_align1>(cutla
+
+[bf16]   4.63 ms/call
+       主 kernel: void cutlass::Kernel2<cutlass_80_tensorop_bf16_s16816gemm_relu_bf16_128x
+
+读法：profiler 直接告诉你时间花在哪个 kernel 上；kernel 名里的 simt=CUDA core、
+      含 tensor/wgmma/hmma 等字样=Tensor Core。这样不必猜，一眼看出走了哪条硬件路径。

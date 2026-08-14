@@ -38,8 +38,8 @@
 |----|------|----------------|------|
 | 10 | GPU 架构深入 | SM / warp / Tensor Core / roofline / Brent's Theorem | ✅ |
 | 11 | CUDA 编程模型 | grid/block/thread、shared memory、访存合并 | ✅ |
-| 12 | 性能分析 | Nsight Systems/Compute、用 roofline 定位瓶颈 | 🔜 |
-| 13 | 算子优化基本功 | bank conflict + padding/swizzling、occupancy、向量化读取、register spill、warp divergence | ⬜ |
+| 12 | 性能分析 | Nsight Systems/Compute、用 roofline 定位瓶颈 | ✅ |
+| 13 | 算子优化基本功 | bank conflict + padding/swizzling、occupancy、向量化读取、register spill、warp divergence | 🔜 |
 | 14 | 手撕经典 kernel ① | reduction / softmax / layernorm / elementwise（消除 warp divergence） | ⬜ |
 | 15 | 手撕经典 kernel ② | sgemm（tiling/split-K）、transpose、scan / stream compaction、top-k（bitonic） | ⬜ |
 | 16 | Triton 实战 | 手写高性能融合算子 | ⬜ |

@@ -43,6 +43,7 @@
 
 - ✅ 第 10 章 [GPU 架构深入](chapters/02-gpu-kernels/10-gpu-arch.md)
 - ✅ 第 11 章 [CUDA 编程模型](chapters/02-gpu-kernels/11-cuda-model.md)
+- ✅ 第 12 章 [性能分析（Nsight / torch.profiler）](chapters/02-gpu-kernels/12-profiling.md)
 
 ## 学习环境
 
