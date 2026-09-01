@@ -1,0 +1,72 @@
+site_name: 多模态入门：给 LLM 工程师的一本书
+site_description: 从纯文本 LLM 出发、边学边记、力求正确的多模态入门书
+
+# 仓库链接：右上角显示 GitHub 图标 + 每页右上"编辑此页"
+repo_url: https://github.com/H-Jett/MultiModalLearning
+repo_name: H-Jett/MultiModalLearning
+edit_uri: edit/main/docs/
+
+theme:
+  name: material
+  language: zh
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    # 亮色 / 暗色切换
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: 切换到暗色
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: 切换到亮色
+  features:
+    - navigation.indexes    # 允许"章"节点本身是一个页面，补充内容缩进其下
+    - navigation.footer     # 页脚上一页/下一页翻页
+    - content.action.edit   # 每页"在 GitHub 上编辑"
+    - navigation.top        # 回到顶部
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy     # 代码块一键复制
+
+# 书内容放在 docs/（MkDocs 默认文档目录）。GitHub 上照样能浏览 docs/ 里的 .md，
+# 二者共用同一批文件，零内容重复。exercises/ 里的可运行代码留在仓库根，通过
+# scripts/sync_code.py 内联进章节，所以任何 Markdown 阅读器都能直接看到代码。
+
+# 只用 GitHub / 阅读器 / MkDocs 三边通用的可移植 Markdown 扩展。
+markdown_extensions:
+  - toc:
+      permalink: true
+  - tables
+  - footnotes
+  - admonition
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+plugins:
+  - search:
+      lang: zh
+
+nav:
+  - 首页: index.md
+  - 学习路线图: roadmap.md
+  - 术语表: glossary.md
+  - 第一部分 · 视觉表征基础:
+      - chapters/01-vision-basics/00-intro.md
+      - 第 1 章 · 图像如何变成 token: chapters/01-vision-basics/01-image-to-tokens.md
+      - 第 2 章 · ViT：把 Transformer 用到图像上: chapters/01-vision-basics/02-vit.md
+      - 第 3 章 · CLIP：对比学习怎么把图文对齐: chapters/01-vision-basics/03-clip.md
+      - 🛠 实战项目 1 · 图像 token 预算计算器: chapters/01-vision-basics/P1-token-budget.md
+  - 思考题参考答案:
+      - 第 1 章: qa/01-image-to-tokens-qa.md
+      - 第 2 章: qa/02-vit-qa.md
+      - 第 3 章: qa/03-clip-qa.md
