@@ -1,6 +1,13 @@
-# CLAUDE.md — MultiModalLearning 开发规范
+# CLAUDE.md — 《多模态入门：给 LLM 工程师的一本书》（books/multimodal）开发规范
 
-> 本文件是这个仓库的开发约定，Claude Code 会自动加载。人类或 AI 在此仓库开发时**必须遵守**。
+> ⚠️ **本书是 `H-Jett/InfraLearning` 仓库中的一本**（位于 `books/multimodal/`），不再是独立仓库根。
+> 仓库级约定（books.yml、统一构建、提交前缀、站点地址）见根目录 [`CLAUDE.md`](../../CLAUDE.md)。
+> **书内的写作纪律以本文件为准**，仓库级文件不覆盖它。
+>
+> 站点：<https://h-jett.github.io/InfraLearning/multimodal/>。发布走**仓库级** workflow
+> `.github/workflows/pages.yml`（构建全部书）；本书自己的校验命令登记在根 `books.yml` 的 `checks`。
+
+> 本文件是这本书的开发约定，Claude Code 会自动加载。人类或 AI 写这本书时**必须遵守**。
 > 目的：让这本《多模态入门：给 LLM 工程师的一本书》保持统一、正确、可移植。
 
 ## 1. 这是什么

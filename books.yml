@@ -33,3 +33,16 @@ books:
       accent: "#2AA0BF"            # 链接 hover / 强调
     checks:                        # 这本书自己的校验命令（在书目录下执行，照搬其原 CI）
       - python scripts/sync_code.py --check
+
+  - slug: multimodal
+    dir: books/multimodal
+    title: 多模态入门：给 LLM 工程师的一本书
+    subtitle: 从纯文本 LLM 出发，讲清多模态
+    description: 面向熟悉纯文本 LLM、零多模态基础的工程师；处处从文本世界做类比再讲差异，配 RTX 5090 真机实验。
+    status: 进行中
+    progress: 第一部分 · 已完成到第 3 章（CLIP）+ 实战项目 1
+    palette:                       # 赤橙，与 infra 的青蓝感知距离 ≥ 120
+      primary: "#B5541F"           # 赤橙：页头 / 主色
+      accent: "#D2743C"            # 链接 hover / 强调
+    checks:
+      - python scripts/sync_code.py --check

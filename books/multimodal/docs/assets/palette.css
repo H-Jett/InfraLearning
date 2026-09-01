@@ -1,0 +1,24 @@
+/* 由 scripts/build_site.py 依据 books.yml 生成，请勿手改 */
+/* 《多模态入门：给 LLM 工程师的一本书》专属配色 —— 与索引页卡片、手机地址栏同一套值 */
+
+:root,
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:        #B5541F;
+  --md-primary-fg-color--light: #CA845E;
+  --md-primary-fg-color--dark:  #8D4218;
+  --md-primary-bg-color:        #ffffff;
+  --md-primary-bg-color--light: #ffffffb3;
+  --md-accent-fg-color:         #D2743C;
+  --md-accent-fg-color--transparent: #D2743C1a;
+  --md-typeset-a-color:         #B5541F;
+}
+
+[data-md-color-scheme="slate"] {
+  /* 深色底下主色要提亮，否则页头发闷、链接看不清 */
+  --md-primary-fg-color:        #8D4218;
+  --md-primary-fg-color--light: #CA845E;
+  --md-primary-fg-color--dark:  #8D4218;
+  --md-accent-fg-color:         #E09E76;
+  --md-accent-fg-color--transparent: #D2743C26;
+  --md-typeset-a-color:         #E09E76;
+}
