@@ -5,8 +5,8 @@
 # 不会出现「书加了但索引忘了改」。
 
 # 站点根地址。**仓库改名时只改这一行**，各书的 site_url 由它拼出。
-base_url: https://h-jett.github.io/InfraLearning/
-repo_url: https://github.com/H-Jett/InfraLearning
+base_url: https://h-jett.github.io/AGILearning/
+repo_url: https://github.com/H-Jett/AGILearning
 
 # PWA（手机「添加到主屏幕」后的表现）
 app_name: 算法工程师·边学边记

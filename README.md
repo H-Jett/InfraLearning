@@ -1,6 +1,6 @@
 # 算法工程师的边学边记
 
-> 📖 **在线阅读**：<https://h-jett.github.io/InfraLearning/>
+> 📖 **在线阅读**：<https://h-jett.github.io/AGILearning/>
 
 一个方向一个仓库；这个仓库放**面向算法工程师的技术书**。每本书自成体系、独立成站。
 
@@ -8,9 +8,9 @@
 
 | 书 | 主题 | 在线阅读 | 目录 |
 |---|---|---|---|
-| **算法工程师的 Infra 入门** | 推理 → GPU 算子 → 框架 → 分布式训练，配 RTX 5090 真机实验 | [/infra/](https://h-jett.github.io/InfraLearning/infra/) | [`books/infra`](books/infra) |
-| **多模态入门** | 从纯文本 LLM 出发，给 LLM 工程师的多模态一本书 | [/multimodal/](https://h-jett.github.io/InfraLearning/multimodal/) | [`books/multimodal`](books/multimodal) |
-| **强化学习：从基础到 LLM 后训练** | 从 MDP、策略梯度讲到 RLHF/PPO/GRPO（🌱 初始化中） | [/rl/](https://h-jett.github.io/InfraLearning/rl/) | [`books/rl`](books/rl) |
+| **算法工程师的 Infra 入门** | 推理 → GPU 算子 → 框架 → 分布式训练，配 RTX 5090 真机实验 | [/infra/](https://h-jett.github.io/AGILearning/infra/) | [`books/infra`](books/infra) |
+| **多模态入门** | 从纯文本 LLM 出发，给 LLM 工程师的多模态一本书 | [/multimodal/](https://h-jett.github.io/AGILearning/multimodal/) | [`books/multimodal`](books/multimodal) |
+| **强化学习：从基础到 LLM 后训练** | 从 MDP、策略梯度讲到 RLHF/PPO/GRPO（🌱 初始化中） | [/rl/](https://h-jett.github.io/AGILearning/rl/) | [`books/rl`](books/rl) |
 
 ## 共同的写法
 

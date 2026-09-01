@@ -3,8 +3,8 @@ site_description: 从纯文本 LLM 出发、边学边记、力求正确的多模
 site_url: !ENV [BOOK_SITE_URL, "http://127.0.0.1:8000/"]   # 由 scripts/build_site.py 按 books.yml 注入
 
 # 仓库链接：右上角显示 GitHub 图标 + 每页右上"编辑此页"
-repo_url: https://github.com/H-Jett/InfraLearning
-repo_name: H-Jett/InfraLearning
+repo_url: https://github.com/H-Jett/AGILearning
+repo_name: H-Jett/AGILearning
 edit_uri: edit/main/books/multimodal/docs/
 
 theme:

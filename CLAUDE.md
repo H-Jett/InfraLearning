@@ -7,12 +7,12 @@
 ## 1. 这个仓库是什么
 
 一个方向一个仓库。这个仓库是「**面向算法工程师的技术书**」这个方向，站点
-<https://h-jett.github.io/InfraLearning/>。
+<https://h-jett.github.io/AGILearning/>。
 
 目前三本：`books/infra`（算法工程师的 Infra 入门）、`books/multimodal`（多模态入门）、
 `books/rl`（强化学习：从基础到 LLM 后训练）。
 
-> 历史：本仓库原是单本《InfraLearning》，2026-09 起改造成书架仓库——
+> 历史：本仓库原是单本《AGILearning》，2026-09 起改造成书架仓库——
 > 原 infra 内容降到 `books/infra/`，把姊妹书 MultiModalLearning 并入 `books/multimodal/`，
 > 并初始化了 `books/rl/`。
 

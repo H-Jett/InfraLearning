@@ -39,5 +39,5 @@
 
 ## 相关的书
 
-- [《算法工程师的 Infra 入门》](https://h-jett.github.io/InfraLearning/infra/)——推理、GPU 算子、分布式训练。
-- [《多模态入门：给 LLM 工程师的一本书》](https://h-jett.github.io/InfraLearning/multimodal/)——从纯文本 LLM 到多模态。
+- [《算法工程师的 Infra 入门》](https://h-jett.github.io/AGILearning/infra/)——推理、GPU 算子、分布式训练。
+- [《多模态入门：给 LLM 工程师的一本书》](https://h-jett.github.io/AGILearning/multimodal/)——从纯文本 LLM 到多模态。

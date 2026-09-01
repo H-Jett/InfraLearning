@@ -1,10 +1,10 @@
 # CLAUDE.md — 《多模态入门：给 LLM 工程师的一本书》（books/multimodal）开发规范
 
-> ⚠️ **本书是 `H-Jett/InfraLearning` 仓库中的一本**（位于 `books/multimodal/`），不再是独立仓库根。
+> ⚠️ **本书是 `H-Jett/AGILearning` 仓库中的一本**（位于 `books/multimodal/`），不再是独立仓库根。
 > 仓库级约定（books.yml、统一构建、提交前缀、站点地址）见根目录 [`CLAUDE.md`](../../CLAUDE.md)。
 > **书内的写作纪律以本文件为准**，仓库级文件不覆盖它。
 >
-> 站点：<https://h-jett.github.io/InfraLearning/multimodal/>。发布走**仓库级** workflow
+> 站点：<https://h-jett.github.io/AGILearning/multimodal/>。发布走**仓库级** workflow
 > `.github/workflows/pages.yml`（构建全部书）；本书自己的校验命令登记在根 `books.yml` 的 `checks`。
 
 > 本文件是这本书的开发约定，Claude Code 会自动加载。人类或 AI 写这本书时**必须遵守**。
@@ -19,7 +19,7 @@
 
 **读者已知**：Transformer / 注意力 / tokenizer / KV cache / 预训练与 SFT / 分布式常识——**不要重复讲**。
 **讲法**：处处**从文本世界做类比**再讲差异（"patchify 就是图像的 tokenizer"）。
-通用 infra 概念引用姊妹篇《算法工程师的 Infra 入门》（github.com/H-Jett/InfraLearning），不重复造轮子。
+通用 infra 概念引用姊妹篇《算法工程师的 Infra 入门》（github.com/H-Jett/AGILearning），不重复造轮子。
 
 ### 1.1 查证纪律（硬要求，写每一章都适用）
 

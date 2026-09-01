@@ -77,4 +77,4 @@ mkdocs build --strict                # 严格构建（CI 会跑）
 ## 姊妹篇
 
 通用推理与训练 infra（KV cache、PagedAttention、CUDA kernel、分布式并行）见
-[《算法工程师的 Infra 入门》](https://github.com/H-Jett/InfraLearning)。
+[《算法工程师的 Infra 入门》](https://github.com/H-Jett/AGILearning)。

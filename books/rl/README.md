@@ -1,7 +1,7 @@
 # 强化学习：从基础到 LLM 后训练
 
-> 📖 **在线阅读**：<https://h-jett.github.io/InfraLearning/rl/>
-> 本书是书架仓库 [H-Jett/InfraLearning](https://github.com/H-Jett/InfraLearning) 中的一本，位于 `books/rl/`。
+> 📖 **在线阅读**：<https://h-jett.github.io/AGILearning/rl/>
+> 本书是书架仓库 [H-Jett/AGILearning](https://github.com/H-Jett/AGILearning) 中的一本，位于 `books/rl/`。
 
 一本"边学边记"的强化学习入门书，从 MDP、策略梯度一路讲到 RLHF、PPO、GRPO——
 面向**熟悉深度学习与大语言模型、但没系统学过 RL** 的算法工程师。

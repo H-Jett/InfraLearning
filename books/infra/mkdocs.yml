@@ -1,8 +1,8 @@
 site_name: 算法工程师的 Infra 入门
 site_description: 一本边学边记、力求正确的 infra 入门书
 site_url: !ENV [BOOK_SITE_URL, "http://127.0.0.1:8000/"]   # 由 scripts/build_site.py 按 books.yml 注入
-repo_url: https://github.com/H-Jett/InfraLearning
-repo_name: H-Jett/InfraLearning
+repo_url: https://github.com/H-Jett/AGILearning
+repo_name: H-Jett/AGILearning
 edit_uri: edit/main/books/infra/docs/
 theme:
   name: material

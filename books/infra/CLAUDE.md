@@ -1,10 +1,10 @@
 # CLAUDE.md — 《算法工程师的 Infra 入门》（books/infra）开发规范
 
-> ⚠️ **本书是 `H-Jett/InfraLearning` 仓库中的一本**（位于 `books/infra/`），不再是独立仓库根。
+> ⚠️ **本书是 `H-Jett/AGILearning` 仓库中的一本**（位于 `books/infra/`），不再是独立仓库根。
 > 仓库级约定（books.yml、统一构建、提交前缀、站点地址）见根目录 [`CLAUDE.md`](../../CLAUDE.md)。
 > **书内的写作纪律以本文件为准**，仓库级文件不覆盖它。
 >
-> 站点：<https://h-jett.github.io/InfraLearning/infra/>。发布走**仓库级** workflow
+> 站点：<https://h-jett.github.io/AGILearning/infra/>。发布走**仓库级** workflow
 > `.github/workflows/pages.yml`（构建全部书）；本书自己的校验命令登记在根 `books.yml` 的 `checks`。
 
 > 本文件是这本书的开发约定，Claude Code 会自动加载。人类或 AI 写这本书时**必须遵守**。
