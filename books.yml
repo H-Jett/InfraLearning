@@ -1,0 +1,35 @@
+# 这个仓库有哪些书 —— 单一真源。
+#
+# 加一本书 = 建 books/<slug>/ 目录 + 在下面加一条记录。
+# 构建脚本据此决定「构建哪些书」和「索引页列哪些书」，
+# 不会出现「书加了但索引忘了改」。
+
+# 站点根地址。**仓库改名时只改这一行**，各书的 site_url 由它拼出。
+base_url: https://h-jett.github.io/InfraLearning/
+repo_url: https://github.com/H-Jett/InfraLearning
+
+# PWA（手机「添加到主屏幕」后的表现）
+app_name: 算法工程师·边学边记
+app_short_name: 边学边记
+app_theme_color: "#2C2C2A"        # 书架首页的地址栏配色（各书用自己的，见下）
+app_background_color: "#FBFBFA"
+
+site_title: 算法工程师的边学边记
+site_tagline: 一个方向一个仓库 · 从 Infra 到多模态
+site_description: >-
+  面向算法工程师的技术书：每本自成体系、独立成站。概念 → 思考题 → 真机代码练习，
+  力求正确，结论尽量在真机上跑出数据、并给出一手出处。
+
+books:
+  - slug: infra
+    dir: books/infra
+    title: 算法工程师的 Infra 入门
+    subtitle: 从推理到 GPU 算子、分布式训练
+    description: 推理→算子→框架→分布式训练，每章配 RTX 5090 真机实验，力求正确。
+    status: 进行中
+    progress: 第二部分 · 已完成到第 12 章（性能分析）
+    palette:                       # 这本书的专属配色（不与其他书重复，见构建脚本的查重）
+      primary: "#0E7490"           # 青蓝：页头 / 主色
+      accent: "#2AA0BF"            # 链接 hover / 强调
+    checks:                        # 这本书自己的校验命令（在书目录下执行，照搬其原 CI）
+      - python scripts/sync_code.py --check

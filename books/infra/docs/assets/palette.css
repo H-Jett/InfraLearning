@@ -1,0 +1,24 @@
+/* 由 scripts/build_site.py 依据 books.yml 生成，请勿手改 */
+/* 《算法工程师的 Infra 入门》专属配色 —— 与索引页卡片、手机地址栏同一套值 */
+
+:root,
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:        #0E7490;
+  --md-primary-fg-color--light: #519BAF;
+  --md-primary-fg-color--dark:  #0B5A70;
+  --md-primary-bg-color:        #ffffff;
+  --md-primary-bg-color--light: #ffffffb3;
+  --md-accent-fg-color:         #2AA0BF;
+  --md-accent-fg-color--transparent: #2AA0BF1a;
+  --md-typeset-a-color:         #0E7490;
+}
+
+[data-md-color-scheme="slate"] {
+  /* 深色底下主色要提亮，否则页头发闷、链接看不清 */
+  --md-primary-fg-color:        #0B5A70;
+  --md-primary-fg-color--light: #519BAF;
+  --md-primary-fg-color--dark:  #0B5A70;
+  --md-accent-fg-color:         #6ABCD2;
+  --md-accent-fg-color--transparent: #2AA0BF26;
+  --md-typeset-a-color:         #6ABCD2;
+}

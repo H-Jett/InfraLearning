@@ -1,4 +1,4 @@
-name: 构建并发布文档到 GitHub Pages
+name: 构建书架并发布到 GitHub Pages
 
 on:
   push:
@@ -26,13 +26,17 @@ jobs:
           python-version: "3.12"
 
       - name: 安装依赖
-        run: pip install mkdocs-material
+        # 锁版本：mkdocs-material 9.7.5 起把 mkdocs 钉在 <2（MkDocs 2.0 与 Material 不兼容），
+        # 不锁的话上游发新版可能让构建某天突然红。
+        run: pip install -r requirements.txt
 
-      - name: 校验代码附录已与源码同步
-        run: python scripts/sync_code.py --check
+      - name: 校验图标齐备（图标在本地生成并提交，CI 不重新生成）
+        run: python scripts/make_icons.py --check
 
-      - name: 构建站点
-        run: mkdocs build --strict   # --strict：有坏链接/警告直接失败
+      # 各本书自己的校验由 build_site.py 按 books.yml 逐本调用，
+      # 任何一本失败都会让整个构建失败——保证站点永远不会发布半成品。
+      - name: 构建全部书 + 索引页
+        run: python scripts/build_site.py
 
       - name: 上传站点产物
         uses: actions/upload-pages-artifact@v3

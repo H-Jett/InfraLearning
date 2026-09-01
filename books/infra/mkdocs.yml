@@ -1,30 +1,42 @@
 site_name: 算法工程师的 Infra 入门
 site_description: 一本边学边记、力求正确的 infra 入门书
-site_url: https://H-Jett.github.io/InfraLearning/
+site_url: !ENV [BOOK_SITE_URL, "http://127.0.0.1:8000/"]   # 由 scripts/build_site.py 按 books.yml 注入
 repo_url: https://github.com/H-Jett/InfraLearning
 repo_name: H-Jett/InfraLearning
+edit_uri: edit/main/books/infra/docs/
 theme:
   name: material
+  custom_dir: overrides        # PWA 注入（manifest / SW / 地址栏配色），由 build_site.py 生成
+  favicon: assets/favicon.svg
   language: zh
   palette:
     # 亮色 / 暗色切换
     - media: "(prefers-color-scheme: light)"
       scheme: default
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-night
         name: 切换到暗色
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
+      primary: custom
+      accent: custom
       toggle:
         icon: material/weather-sunny
         name: 切换到亮色
   features:
+    - navigation.instant           # 站内跳转不整页刷新，手机上体感接近 app
+    - navigation.instant.prefetch  # 悬停即预取（桌面端受益，触屏无副作用）
+    - navigation.instant.progress  # 慢网络下显示顶部进度条
+    - header.autohide              # 小屏下滚时收起页头，让出阅读区
     - navigation.indexes    # 允许"章"节点本身是一个页面，补充内容缩进其下
     - navigation.footer     # 页脚上一页/下一页翻页
     - navigation.top        # 回到顶部
     - toc.follow
     - search.suggest
     - search.highlight
+    - content.action.edit   # 每页「在 GitHub 上编辑」
     - content.code.copy     # 代码块一键复制
 
 # 书内容放在 docs/（MkDocs 默认文档目录）。GitHub 上照样能浏览 docs/ 里的 .md，
@@ -87,3 +99,6 @@ nav:
       - 第 10 章: qa/10-gpu-arch-qa.md
       - 第 11 章: qa/11-cuda-model-qa.md
       - 第 12 章: qa/12-profiling-qa.md
+
+extra_css:
+  - assets/palette.css   # 由 books.yml 下发，勿手改
