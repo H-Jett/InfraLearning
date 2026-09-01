@@ -9,10 +9,12 @@
 一个方向一个仓库。这个仓库是「**面向算法工程师的技术书**」这个方向，站点
 <https://h-jett.github.io/InfraLearning/>。
 
-目前两本：`books/infra`（算法工程师的 Infra 入门）、`books/multimodal`（多模态入门）。
+目前三本：`books/infra`（算法工程师的 Infra 入门）、`books/multimodal`（多模态入门）、
+`books/rl`（强化学习：从基础到 LLM 后训练）。
 
 > 历史：本仓库原是单本《InfraLearning》，2026-09 起改造成书架仓库——
-> 原 infra 内容降到 `books/infra/`，并把姊妹书 MultiModalLearning 并入 `books/multimodal/`。
+> 原 infra 内容降到 `books/infra/`，把姊妹书 MultiModalLearning 并入 `books/multimodal/`，
+> 并初始化了 `books/rl/`。
 
 ## 2. 铁律：书与书之间互不干涉
 
@@ -49,7 +51,7 @@
   from build_site import color_distance, MIN_DISTANCE
   print(color_distance('#你的色', '#0E7490'), MIN_DISTANCE)
   ```
-- 现用：infra `#0E7490` 青蓝、multimodal `#B5541F` 赤橙（两两 ≥ 120）。
+- 现用：infra `#0E7490` 青蓝、multimodal `#B5541F` 赤橙、rl `#6D3FB0` 紫罗兰（两两 ≥ 120）。
 
 ## 6. 图标（生成物但要提交，CI 只 --check）
 

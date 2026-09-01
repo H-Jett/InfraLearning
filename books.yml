@@ -46,3 +46,16 @@ books:
       accent: "#D2743C"            # 链接 hover / 强调
     checks:
       - python scripts/sync_code.py --check
+
+  - slug: rl
+    dir: books/rl
+    title: 强化学习：从基础到 LLM 后训练
+    subtitle: 从 MDP、策略梯度到 RLHF/GRPO
+    description: 面向懂深度学习与 LLM、但没系统学过 RL 的工程师；从最小 RL 骨架讲到今天 LLM 后训练在用的方法。
+    status: 初始化
+    progress: 骨架与七部分路线图已就位，正文待写
+    palette:                       # 紫罗兰，与 infra 青蓝(185)、mm 赤橙(257)均 ≥ 120
+      primary: "#6D3FB0"           # 紫罗兰：页头 / 主色
+      accent: "#8A5CD0"            # 链接 hover / 强调
+    checks:
+      - python scripts/sync_code.py --check

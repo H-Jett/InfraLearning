@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+<!-- 由 scripts/build_site.py 依据 books.yml 生成，请勿手改 -->
+
+{% block extrahead %}
+  <link rel="manifest" href="/InfraLearning/manifest.webmanifest">
+  <link rel="apple-touch-icon" href="/InfraLearning/icons/apple-touch-icon-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="强化学习：从基础到 LLM 后训练">
+  <script>
+    // 这本书的地址栏配色。Material 也会输出一条 theme-color，
+    // 这里统一成本书的颜色，避免两条并存导致表现不一致。
+    (function () {
+      function setThemeColor() {
+        document.querySelectorAll('meta[name="theme-color"]').forEach(function (m) {
+          m.parentNode.removeChild(m);
+        });
+        var m = document.createElement('meta');
+        m.name = 'theme-color';
+        m.content = '#6D3FB0';
+        document.head.appendChild(m);
+      }
+      setThemeColor();
+      document.addEventListener('DOMContentLoaded', setThemeColor);
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/InfraLearning/sw.js', { scope: '/InfraLearning/' });
+        });
+      }
+    })();
+  </script>
+{% endblock %}

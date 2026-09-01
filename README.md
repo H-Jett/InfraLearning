@@ -10,6 +10,7 @@
 |---|---|---|---|
 | **算法工程师的 Infra 入门** | 推理 → GPU 算子 → 框架 → 分布式训练，配 RTX 5090 真机实验 | [/infra/](https://h-jett.github.io/InfraLearning/infra/) | [`books/infra`](books/infra) |
 | **多模态入门** | 从纯文本 LLM 出发，给 LLM 工程师的多模态一本书 | [/multimodal/](https://h-jett.github.io/InfraLearning/multimodal/) | [`books/multimodal`](books/multimodal) |
+| **强化学习：从基础到 LLM 后训练** | 从 MDP、策略梯度讲到 RLHF/PPO/GRPO（🌱 初始化中） | [/rl/](https://h-jett.github.io/InfraLearning/rl/) | [`books/rl`](books/rl) |
 
 ## 共同的写法
 
