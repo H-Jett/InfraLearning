@@ -4,11 +4,10 @@
 {# 顶部横幅：从任意一页一键回书架。用 announce 块是 Material 的官方扩展点，
     跨版本比覆写 header 稳；它随页头一起滚动收起，不常驻占用阅读区。 #}
 {% block announce %}
-  <a class="shelf-back" href="/AGILearning/" title="返回书架，查看全部书目">
-    <span class="shelf-back__mark">🧐</span>
-    <span class="shelf-back__text">AGI</span>
-    <span class="shelf-back__cta">全部书目 →</span>
-  </a>
+  <div class="shelf-bar">
+    <span class="shelf-bar__title"><span class="shelf-bar__mark">🧐</span>AGI</span>
+    <a class="shelf-bar__back" href="/AGILearning/" title="返回书架，查看全部书目">返回书架 ›</a>
+  </div>
 {% endblock %}
 
 {% block extrahead %}
