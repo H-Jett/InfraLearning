@@ -123,24 +123,28 @@ PALETTE_CSS = """/* {banner} */
   --md-typeset-a-color:         {accent_light};
 }}
 
-/* 顶部「返回书架」横幅：每本书用自己主色的深调，与页头呼应 */
-.md-banner {{
-  background-color: {primary_dark};
-  color: #fff;
-}}
-.md-banner a.shelf-back {{
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
+/* 页头右侧「返回书架」链接：塞进已有页头栏，不额外占高度 */
+.md-header .shelf-back {{
   display: inline-flex;
   align-items: center;
-  gap: .4em;
+  gap: .3em;
+  width: auto;
+  padding: 0 .5rem;
+  margin: .2rem 0;
+  font-size: .72rem;
+  font-weight: 600;
+  line-height: 1.4;
+  white-space: nowrap;
+  color: var(--md-primary-bg-color, #fff);
+  opacity: .9;
+  text-decoration: none;
 }}
-.md-banner a.shelf-back:hover {{
-  text-decoration: underline;
-  opacity: .92;
+.md-header .shelf-back:hover {{ opacity: 1; text-decoration: underline; }}
+.md-header .shelf-back .shelf-back__icon {{ font-size: .95rem; line-height: 1; }}
+/* 窄屏只留图标，省地方 */
+@media screen and (max-width: 44.9375em) {{
+  .md-header .shelf-back .shelf-back__text {{ display: none; }}
 }}
-.md-banner a.shelf-back .shelf-back__icon {{ font-style: normal; }}
 """
 
 OVERRIDES_MAIN = """{{% extends "base.html" %}}
@@ -167,6 +171,23 @@ OVERRIDES_MAIN = """{{% extends "base.html" %}}
       }}
       setThemeColor();
       document.addEventListener('DOMContentLoaded', setThemeColor);
+      // 在页头右侧塞一个「返回书架」链接：复用已有页头栏，不额外占高度。
+      // 用 MutationObserver 兜底，保证 navigation.instant 切页后依然在。
+      function addShelfBack() {{
+        var inner = document.querySelector('.md-header__inner');
+        if (!inner || inner.querySelector('a.shelf-back')) return;
+        var a = document.createElement('a');
+        a.className = 'shelf-back md-header__button';
+        a.href = '{base}';
+        a.title = '返回书架 · 全部书目';
+        a.innerHTML = '<span class="shelf-back__icon">\\uD83D\\uDCDA</span>' +
+                      '<span class="shelf-back__text">书架</span>';
+        inner.appendChild(a);
+      }}
+      addShelfBack();
+      document.addEventListener('DOMContentLoaded', addShelfBack);
+      new MutationObserver(addShelfBack).observe(document.documentElement,
+        {{ childList: true, subtree: true }});
       if ('serviceWorker' in navigator) {{
         window.addEventListener('load', function () {{
           navigator.serviceWorker.register('{base}sw.js', {{ scope: '{base}' }});
@@ -174,13 +195,6 @@ OVERRIDES_MAIN = """{{% extends "base.html" %}}
       }}
     }})();
   </script>
-{{% endblock %}}
-
-{{% block announce %}}
-  <a class="shelf-back" href="{base}" title="返回书架首页（全部书目）">
-    <span class="shelf-back__icon">📚</span>
-    <span class="shelf-back__text">返回书架 · 全部书目</span>
-  </a>
 {{% endblock %}}
 """
 

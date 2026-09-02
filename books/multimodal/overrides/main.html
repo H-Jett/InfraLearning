@@ -22,6 +22,23 @@
       }
       setThemeColor();
       document.addEventListener('DOMContentLoaded', setThemeColor);
+      // 在页头右侧塞一个「返回书架」链接：复用已有页头栏，不额外占高度。
+      // 用 MutationObserver 兜底，保证 navigation.instant 切页后依然在。
+      function addShelfBack() {
+        var inner = document.querySelector('.md-header__inner');
+        if (!inner || inner.querySelector('a.shelf-back')) return;
+        var a = document.createElement('a');
+        a.className = 'shelf-back md-header__button';
+        a.href = '/AGILearning/';
+        a.title = '返回书架 · 全部书目';
+        a.innerHTML = '<span class="shelf-back__icon">\uD83D\uDCDA</span>' +
+                      '<span class="shelf-back__text">书架</span>';
+        inner.appendChild(a);
+      }
+      addShelfBack();
+      document.addEventListener('DOMContentLoaded', addShelfBack);
+      new MutationObserver(addShelfBack).observe(document.documentElement,
+        { childList: true, subtree: true });
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
           navigator.serviceWorker.register('/AGILearning/sw.js', { scope: '/AGILearning/' });
@@ -29,11 +46,4 @@
       }
     })();
   </script>
-{% endblock %}
-
-{% block announce %}
-  <a class="shelf-back" href="/AGILearning/" title="返回书架首页（全部书目）">
-    <span class="shelf-back__icon">📚</span>
-    <span class="shelf-back__text">返回书架 · 全部书目</span>
-  </a>
 {% endblock %}
