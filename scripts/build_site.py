@@ -123,54 +123,33 @@ PALETTE_CSS = """/* {banner} */
   --md-typeset-a-color:         {accent_light};
 }}
 
-/* ---- 顶部「返回书架」条 ---- */
-/* 和页头**同一主色**（{primary}），两条融为一体，色系与本书一致——不再用更暗的
-   primary_dark 造成深浅两截。文字统一白色，与页头里的书名同色。
-   颜色**写死不依赖变量**：条内层带 md-typeset/md-grid 等 class，靠 color:inherit
-   容易被别的规则截胡，用 .md-banner .shelf-bar__* 提高特异性一次说清。
-   整条随页头一起滚动收起（header.autohide），不常驻占用阅读区。 */
+/* ---- 顶部「返回书架」横幅 ---- */
+/* 颜色**写死不依赖变量**：横幅内层带 md-typeset/md-grid 等 class，
+   靠 color:inherit 容易被别的规则截胡。用 .md-banner .shelf-back 提高特异性一次说清。 */
 .md-banner {{
-  background-color: {primary};
+  background-color: {primary_dark};
   color: #ffffff;
-  border-bottom: 1px solid rgba(255, 255, 255, .16);   /* 与页头之间一条细分隔 */
 }}
-.md-banner .shelf-bar {{
+.md-banner .shelf-back {{
   display: flex;
   align-items: center;
   gap: .5rem;
-  font-size: .76rem;
-  line-height: 1.5;
-  padding: .12rem 0;
-}}
-/* 标题：靠左 */
-.md-banner .shelf-bar__title {{
-  display: inline-flex;
-  align-items: center;
-  gap: .4rem;
-  font-weight: 700;
-  color: #ffffff;
-}}
-.md-banner .shelf-bar__mark {{ font-size: .95rem; }}
-/* 返回按钮：靠右，做成描边胶囊，一眼是「可点的返回」 */
-.md-banner .shelf-bar__back {{
-  margin-left: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: .25rem;
   color: #ffffff;
   text-decoration: none;
+  font-size: .76rem;
   font-weight: 500;
-  white-space: nowrap;
-  padding: .06rem .6rem;
-  border: 1px solid rgba(255, 255, 255, .55);
-  border-radius: 999px;
-  transition: background-color .12s ease, border-color .12s ease;
+  line-height: 1.5;
+  padding: .1rem 0;
 }}
-.md-banner .shelf-bar__back:hover,
-.md-banner .shelf-bar__back:focus {{
+.md-banner .shelf-back:hover,
+.md-banner .shelf-back:focus {{ color: #ffffff; }}
+.md-banner .shelf-back__mark {{ font-size: .95rem; }}
+.md-banner .shelf-back__text {{ font-weight: 700; color: #ffffff; }}
+.md-banner .shelf-back__cta {{
+  margin-left: auto;
   color: #ffffff;
-  background-color: rgba(255, 255, 255, .16);
-  border-color: #ffffff;
+  white-space: nowrap;
+  border-bottom: 1px solid #ffffff;
 }}
 
 /* 页头文字同样写死，避免 --md-primary-bg-color 被其他规则覆盖后变暗 */
@@ -186,12 +165,15 @@ OVERRIDES_MAIN = """{{% extends "base.html" %}}
 <!-- {banner} -->
 
 {{# 顶部横幅：从任意一页一键回书架。用 announce 块是 Material 的官方扩展点，
-    跨版本比覆写 header 稳；它随页头一起滚动收起，不常驻占用阅读区。 #}}
+    跨版本比覆写 header 稳；它随页头一起滚动收起，不常驻占用阅读区。
+    **刻意不显示书架名**——书的页面不跟仓库/书架的标题绑定，
+    书架以后改名，书这边一个字都不用动。 #}}
 {{% block announce %}}
-  <div class="shelf-bar">
-    <span class="shelf-bar__title"><span class="shelf-bar__mark">🧐</span>{shelf_title}</span>
-    <a class="shelf-bar__back" href="{base}" title="返回书架，查看全部书目">返回书架 ›</a>
-  </div>
+  <a class="shelf-back" href="{base}" title="返回书架，查看全部书目">
+    <span class="shelf-back__mark">🧐</span>
+    <span class="shelf-back__text">返回书架</span>
+    <span class="shelf-back__cta">全部书目 →</span>
+  </a>
 {{% endblock %}}
 
 {{% block extrahead %}}
@@ -226,7 +208,7 @@ OVERRIDES_MAIN = """{{% extends "base.html" %}}
 """
 
 
-def book_generated_files(book: dict, base_path: str, shelf_title: str) -> dict[Path, str]:
+def book_generated_files(book: dict, base_path: str) -> dict[Path, str]:
     """这本书应该有哪些「由 books.yml 生成」的文件，以及它们应有的内容。"""
     p = book["palette"]
     primary, accent = p["primary"], p["accent"]
@@ -246,16 +228,16 @@ def book_generated_files(book: dict, base_path: str, shelf_title: str) -> dict[P
         ),
         book_dir / "overrides" / "main.html": OVERRIDES_MAIN.format(
             banner=GENERATED_BANNER, base=base_path,
-            app_title=book["title"], primary=primary, shelf_title=shelf_title,
+            app_title=book["title"], primary=primary,
         ),
     }
 
 
-def sync_book_assets(books: list[dict], base_path: str, shelf_title: str, check: bool) -> bool:
+def sync_book_assets(books: list[dict], base_path: str, check: bool) -> bool:
     """写出（或校验）每本书的配色 CSS 与主题覆写。check 模式下不一致返回 False。"""
     ok = True
     for book in books:
-        for path, want in book_generated_files(book, base_path, shelf_title).items():
+        for path, want in book_generated_files(book, base_path).items():
             rel = path.relative_to(REPO_ROOT)
             have = path.read_text(encoding="utf-8") if path.exists() else None
             if have == want:
@@ -561,7 +543,7 @@ def main() -> int:
         books = [b for b in books if b["slug"] in wanted]
 
     # 配色 CSS 与主题覆写：check 模式只比对，不写盘
-    if not sync_book_assets(cfg["books"], base_path, cfg.get("site_title", "书架"), check=args.check):
+    if not sync_book_assets(cfg["books"], base_path, check=args.check):
         return 1
 
     build = not args.check
