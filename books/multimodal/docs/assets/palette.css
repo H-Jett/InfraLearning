@@ -22,3 +22,22 @@
   --md-accent-fg-color--transparent: #D2743C26;
   --md-typeset-a-color:         #E09E76;
 }
+
+/* 顶部「返回书架」横幅：每本书用自己主色的深调，与页头呼应 */
+.md-banner {
+  background-color: #8D4218;
+  color: #fff;
+}
+.md-banner a.shelf-back {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+}
+.md-banner a.shelf-back:hover {
+  text-decoration: underline;
+  opacity: .92;
+}
+.md-banner a.shelf-back .shelf-back__icon { font-style: normal; }

@@ -122,6 +122,25 @@ PALETTE_CSS = """/* {banner} */
   --md-accent-fg-color--transparent: {accent}26;
   --md-typeset-a-color:         {accent_light};
 }}
+
+/* 顶部「返回书架」横幅：每本书用自己主色的深调，与页头呼应 */
+.md-banner {{
+  background-color: {primary_dark};
+  color: #fff;
+}}
+.md-banner a.shelf-back {{
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+}}
+.md-banner a.shelf-back:hover {{
+  text-decoration: underline;
+  opacity: .92;
+}}
+.md-banner a.shelf-back .shelf-back__icon {{ font-style: normal; }}
 """
 
 OVERRIDES_MAIN = """{{% extends "base.html" %}}
@@ -155,6 +174,13 @@ OVERRIDES_MAIN = """{{% extends "base.html" %}}
       }}
     }})();
   </script>
+{{% endblock %}}
+
+{{% block announce %}}
+  <a class="shelf-back" href="{base}" title="返回书架首页（全部书目）">
+    <span class="shelf-back__icon">📚</span>
+    <span class="shelf-back__text">返回书架 · 全部书目</span>
+  </a>
 {{% endblock %}}
 """
 
