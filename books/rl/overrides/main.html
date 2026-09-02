@@ -1,6 +1,16 @@
 {% extends "base.html" %}
 <!-- 由 scripts/build_site.py 依据 books.yml 生成，请勿手改 -->
 
+{# 顶部横幅：从任意一页一键回书架。用 announce 块是 Material 的官方扩展点，
+    跨版本比覆写 header 稳；它随页头一起滚动收起，不常驻占用阅读区。 #}
+{% block announce %}
+  <a class="shelf-back" href="/AGILearning/" title="返回书架，查看全部书目">
+    <span class="shelf-back__mark">🧐</span>
+    <span class="shelf-back__text">AGI</span>
+    <span class="shelf-back__cta">全部书目 →</span>
+  </a>
+{% endblock %}
+
 {% block extrahead %}
   <link rel="manifest" href="/AGILearning/manifest.webmanifest">
   <link rel="apple-touch-icon" href="/AGILearning/icons/apple-touch-icon-180.png">
@@ -22,23 +32,6 @@
       }
       setThemeColor();
       document.addEventListener('DOMContentLoaded', setThemeColor);
-      // 在页头右侧塞一个「返回书架」链接：复用已有页头栏，不额外占高度。
-      // 用 MutationObserver 兜底，保证 navigation.instant 切页后依然在。
-      function addShelfBack() {
-        var inner = document.querySelector('.md-header__inner');
-        if (!inner || inner.querySelector('a.shelf-back')) return;
-        var a = document.createElement('a');
-        a.className = 'shelf-back md-header__button';
-        a.href = '/AGILearning/';
-        a.title = '返回书架 · 全部书目';
-        a.innerHTML = '<span class="shelf-back__icon">\uD83D\uDCDA</span>' +
-                      '<span class="shelf-back__text">书架</span>';
-        inner.appendChild(a);
-      }
-      addShelfBack();
-      document.addEventListener('DOMContentLoaded', addShelfBack);
-      new MutationObserver(addShelfBack).observe(document.documentElement,
-        { childList: true, subtree: true });
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', function () {
           navigator.serviceWorker.register('/AGILearning/sw.js', { scope: '/AGILearning/' });
