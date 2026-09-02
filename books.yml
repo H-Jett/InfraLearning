@@ -9,13 +9,13 @@ base_url: https://h-jett.github.io/AGILearning/
 repo_url: https://github.com/H-Jett/AGILearning
 
 # PWA（手机「添加到主屏幕」后的表现）
-app_name: 算法工程师·边学边记
-app_short_name: 边学边记
+app_name: AGI
+app_short_name: AGI
 app_theme_color: "#2C2C2A"        # 书架首页的地址栏配色（各书用自己的，见下）
 app_background_color: "#FBFBFA"
 
-site_title: 算法工程师的边学边记
-site_tagline: 一个方向一个仓库 · 从 Infra 到多模态
+site_title: AGI
+site_tagline: 一个方向一个仓库 · Infra、多模态、强化学习，通往 AGI 的技术栈
 site_description: >-
   面向算法工程师的技术书：每本自成体系、独立成站。概念 → 思考题 → 真机代码练习，
   力求正确，结论尽量在真机上跑出数据、并给出一手出处。
